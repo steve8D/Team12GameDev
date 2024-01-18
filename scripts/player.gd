@@ -9,3 +9,7 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body):
+	print("Cutscene triggered")

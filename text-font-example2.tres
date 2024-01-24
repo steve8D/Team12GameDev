@@ -1,0 +1,13 @@
+[gd_resource type="LabelSettings" load_steps=3 format=3 uid="uid://cn1kj6c4x1gfw"]
+
+[sub_resource type="FontVariation" id="FontVariation_sjovo"]
+
+[sub_resource type="FontVariation" id="FontVariation_rkrk2"]
+base_font = SubResource("FontVariation_sjovo")
+
+[resource]
+line_spacing = 0.0
+font = SubResource("FontVariation_rkrk2")
+font_size = 40
+font_color = Color(0, 0, 0, 1)
+shadow_size = 0

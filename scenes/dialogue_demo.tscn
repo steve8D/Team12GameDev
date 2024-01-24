@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://q45dfr0rg3ux"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_ugq56"]
+[ext_resource type="Texture2D" uid="uid://c44fv5wcvykop" path="res://sprites/player/sample_player.png" id="2_ydav3"]
+[ext_resource type="LabelSettings" uid="uid://b8jccqmt5m22p" path="res://text-font-example.tres" id="3_f52qu"]
+[ext_resource type="LabelSettings" uid="uid://cn1kj6c4x1gfw" path="res://text-font-example2.tres" id="4_7lr7t"]
+[ext_resource type="PackedScene" uid="uid://cae42itohucmj" path="res://resources/dialogue-box.tscn" id="5_h2mkj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4qjp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b33nc"]
+size = Vector2(186, 91)
+
+[node name="Node2D" type="Node2D"]
+metadata/_edit_vertical_guides_ = []
+
+[node name="player" type="CharacterBody2D" parent="."]
+scale = Vector2(0.994953, 0.950902)
+script = ExtResource("1_ugq56")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+texture = ExtResource("2_ydav3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+scale = Vector2(10, 14)
+shape = SubResource("RectangleShape2D_a4qjp")
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+scale = Vector2(1.00507e-05, 1.05163e-05)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="BoxContainer" type="BoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = -576.0
+offset_top = -322.0
+offset_right = -250.0
+offset_bottom = -218.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/BoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/BoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Mode: "
+label_settings = ExtResource("3_f52qu")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = 288.0
+offset_top = -66.0
+offset_right = 412.0
+offset_bottom = -11.0
+text = "point1"
+label_settings = ExtResource("4_7lr7t")
+
+[node name="Label3" type="Label" parent="Control"]
+layout_mode = 2
+offset_left = -486.0
+offset_top = 172.0
+offset_right = -362.0
+offset_bottom = 227.0
+text = "point3"
+label_settings = ExtResource("4_7lr7t")
+
+[node name="Area2D" type="Area2D" parent="Control"]
+position = Vector2(311, 222)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Control/Area2D"]
+position = Vector2(17, 4.5)
+shape = SubResource("RectangleShape2D_b33nc")
+
+[node name="Label2" type="Label" parent="Control/Area2D"]
+z_index = -3
+offset_left = -46.0
+offset_top = -30.0
+offset_right = 78.0
+offset_bottom = 25.0
+text = "point2"
+label_settings = ExtResource("4_7lr7t")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("5_h2mkj")]
+
+[connection signal="body_entered" from="Control/Area2D" to="player" method="_on_area_2d_body_entered"]

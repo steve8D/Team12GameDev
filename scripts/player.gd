@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+signal triggerDialogue
+signal endDialogue
+
 @export var speed = 400
 
 func get_input():
@@ -13,3 +16,8 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body):
 	print("Cutscene triggered")
+	triggerDialogue.emit()
+
+
+func _on_area_2d_body_exited(body):
+	endDialogue.emit()

@@ -12,23 +12,39 @@ corner_detail = 10
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
-[node name="Panel" type="Panel" parent="."]
-offset_right = 1038.0
-offset_bottom = 183.0
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="Control"]
+offset_left = -488.0
+offset_top = -178.0
+offset_right = 525.0
+offset_bottom = 2.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_t66og")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel"]
 layout_mode = 0
-offset_left = 10.0
+offset_left = 6.0
 offset_top = 6.0
-offset_right = 1033.0
+offset_right = 1007.0
 offset_bottom = 171.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 
-[node name="Label" type="Label" parent="Panel/MarginContainer"]
+[node name="Label" type="Label" parent="Control/Panel/MarginContainer"]
 layout_mode = 2
 text = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 label_settings = ExtResource("1_nieut")
 autowrap_mode = 2
 max_lines_visible = 3
+metadata/_edit_lock_ = true

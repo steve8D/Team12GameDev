@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="Team 12 Game Dev"
-run/main_scene="res://scenes/earth.tscn"
+run/main_scene="res://scenes/dialogue_demo.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [dotnet]
 

@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://q45dfr0rg3ux"]
+[gd_scene load_steps=8 format=3 uid="uid://bu36u7heeikt1"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ugq56"]
+[ext_resource type="PackedScene" uid="uid://cae42itohucmj" path="res://resources/dialogue-box.tscn" id="2_rfyq1"]
 [ext_resource type="Texture2D" uid="uid://c44fv5wcvykop" path="res://sprites/player/sample_player.png" id="2_ydav3"]
 [ext_resource type="LabelSettings" uid="uid://b8jccqmt5m22p" path="res://text-font-example.tres" id="3_f52qu"]
 [ext_resource type="LabelSettings" uid="uid://cn1kj6c4x1gfw" path="res://text-font-example2.tres" id="4_7lr7t"]
-[ext_resource type="PackedScene" uid="uid://cae42itohucmj" path="res://resources/dialogue-box.tscn" id="5_h2mkj"]
-[ext_resource type="Script" path="res://resources/dialogue-box.gd" id="6_5502t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4qjp"]
 
@@ -15,10 +14,7 @@ size = Vector2(186, 91)
 [node name="Node2D" type="Node2D"]
 metadata/_edit_vertical_guides_ = []
 
-[node name="DialogueBox" parent="." instance=ExtResource("5_h2mkj")]
-offset = Vector2(79.535, 398.95)
-transform = Transform2D(1, 0, 0, 1, 79.535, 398.95)
-script = ExtResource("6_5502t")
+[node name="CanvasLayer" parent="." instance=ExtResource("2_rfyq1")]
 
 [node name="player" type="CharacterBody2D" parent="."]
 scale = Vector2(0.994953, 0.950902)
@@ -88,7 +84,7 @@ offset_bottom = 25.0
 text = "point2"
 label_settings = ExtResource("4_7lr7t")
 
-[connection signal="endDialogue" from="player" to="DialogueBox" method="_on_player_end_dialogue"]
-[connection signal="triggerDialogue" from="player" to="DialogueBox" method="_on_player_trigger_dialogue"]
+[connection signal="endDialogue" from="player" to="CanvasLayer" method="_on_player_end_dialogue"]
+[connection signal="triggerDialogue" from="player" to="CanvasLayer" method="_on_player_trigger_dialogue"]
 [connection signal="body_entered" from="Control/Area2D" to="player" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Control/Area2D" to="player" method="_on_area_2d_body_exited"]

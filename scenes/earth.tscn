@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://djt86gl12x5sl"]
+[gd_scene load_steps=10 format=3 uid="uid://djt86gl12x5sl"]
 
-[ext_resource type="Texture2D" uid="uid://c44fv5wcvykop" path="res://sprites/player/sample_player.png" id="1_mu6wf"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_r005y"]
+[ext_resource type="Texture2D" uid="uid://c44fv5wcvykop" path="res://assets/sprites/player/sample_player.png" id="2_3fyhv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_fojav"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4qjp"]
 
@@ -10,6 +12,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_ix4l0"]
 font = SubResource("FontVariation_1tpeu")
 font_size = 72
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="FontVariation" id="FontVariation_sjovo"]
 
@@ -20,17 +23,23 @@ base_font = SubResource("FontVariation_sjovo")
 line_spacing = 0.0
 font = SubResource("FontVariation_rkrk2")
 font_size = 40
+font_color = Color(0, 0, 0, 1)
 outline_size = 1
 
 [node name="Node2D" type="Node2D"]
 metadata/_edit_vertical_guides_ = []
+
+[node name="background" type="MeshInstance2D" parent="."]
+position = Vector2(0, 356)
+scale = Vector2(1510, 288)
+mesh = SubResource("BoxMesh_fojav")
 
 [node name="player" type="CharacterBody2D" parent="."]
 scale = Vector2(0.994953, 0.950902)
 script = ExtResource("1_r005y")
 
 [node name="Sprite2D" type="Sprite2D" parent="player"]
-texture = ExtResource("1_mu6wf")
+texture = ExtResource("2_3fyhv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 scale = Vector2(10, 14)
@@ -39,28 +48,28 @@ shape = SubResource("RectangleShape2D_a4qjp")
 [node name="Camera2D" type="Camera2D" parent="player"]
 scale = Vector2(1.00507e-05, 1.05163e-05)
 
-[node name="Control" type="Control" parent="."]
+[node name="user_interface" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="BoxContainer" type="BoxContainer" parent="Control"]
+[node name="BoxContainer" type="BoxContainer" parent="user_interface"]
 layout_mode = 0
 offset_left = -576.0
 offset_top = -322.0
 offset_right = -250.0
 offset_bottom = -218.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/BoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="user_interface/BoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/BoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="user_interface/BoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Mode: "
 label_settings = SubResource("LabelSettings_ix4l0")
 
-[node name="Label" type="Label" parent="Control"]
+[node name="Label" type="Label" parent="user_interface"]
 layout_mode = 2
 offset_left = 288.0
 offset_top = -66.0
@@ -69,7 +78,7 @@ offset_bottom = -11.0
 text = "point1"
 label_settings = SubResource("LabelSettings_xwfwc")
 
-[node name="Label2" type="Label" parent="Control"]
+[node name="Label2" type="Label" parent="user_interface"]
 layout_mode = 2
 offset_left = 375.0
 offset_top = 269.0
@@ -78,7 +87,7 @@ offset_bottom = 324.0
 text = "point2"
 label_settings = SubResource("LabelSettings_xwfwc")
 
-[node name="Label3" type="Label" parent="Control"]
+[node name="Label3" type="Label" parent="user_interface"]
 layout_mode = 2
 offset_left = -486.0
 offset_top = 172.0
@@ -86,3 +95,5 @@ offset_right = -362.0
 offset_bottom = 227.0
 text = "point3"
 label_settings = SubResource("LabelSettings_xwfwc")
+
+[node name="Area2D" type="Area2D" parent="."]

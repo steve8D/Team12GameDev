@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://bu36u7heeikt1"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_ugq56"]
-[ext_resource type="PackedScene" uid="uid://cae42itohucmj" path="res://resources/dialogue-box.tscn" id="2_rfyq1"]
-[ext_resource type="Texture2D" uid="uid://c44fv5wcvykop" path="res://sprites/player/sample_player.png" id="2_ydav3"]
-[ext_resource type="LabelSettings" uid="uid://b8jccqmt5m22p" path="res://text-font-example.tres" id="3_f52qu"]
-[ext_resource type="LabelSettings" uid="uid://cn1kj6c4x1gfw" path="res://text-font-example2.tres" id="4_7lr7t"]
+[ext_resource type="PackedScene" uid="uid://cae42itohucmj" path="res://resources/dialogue-box.tscn" id="1_ieblf"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="2_kcic5"]
+[ext_resource type="Texture2D" uid="uid://c44fv5wcvykop" path="res://sprites/player/sample_player.png" id="3_jr2d0"]
+[ext_resource type="LabelSettings" uid="uid://b8jccqmt5m22p" path="res://scenes/demos/dialogue/text-font-example.tres" id="4_70lgp"]
+[ext_resource type="LabelSettings" uid="uid://cn1kj6c4x1gfw" path="res://scenes/demos/dialogue/text-font-example2.tres" id="5_vb8j4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4qjp"]
 
@@ -14,14 +14,14 @@ size = Vector2(186, 91)
 [node name="Node2D" type="Node2D"]
 metadata/_edit_vertical_guides_ = []
 
-[node name="CanvasLayer" parent="." instance=ExtResource("2_rfyq1")]
+[node name="CanvasLayer" parent="." instance=ExtResource("1_ieblf")]
 
 [node name="player" type="CharacterBody2D" parent="."]
 scale = Vector2(0.994953, 0.950902)
-script = ExtResource("1_ugq56")
+script = ExtResource("2_kcic5")
 
 [node name="Sprite2D" type="Sprite2D" parent="player"]
-texture = ExtResource("2_ydav3")
+texture = ExtResource("3_jr2d0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 scale = Vector2(10, 14)
@@ -47,7 +47,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/BoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Mode: "
-label_settings = ExtResource("3_f52qu")
+label_settings = ExtResource("4_70lgp")
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 2
@@ -56,7 +56,7 @@ offset_top = -66.0
 offset_right = 412.0
 offset_bottom = -11.0
 text = "point1"
-label_settings = ExtResource("4_7lr7t")
+label_settings = ExtResource("5_vb8j4")
 
 [node name="Label3" type="Label" parent="Control"]
 layout_mode = 2
@@ -65,7 +65,7 @@ offset_top = 172.0
 offset_right = -362.0
 offset_bottom = 227.0
 text = "point3"
-label_settings = ExtResource("4_7lr7t")
+label_settings = ExtResource("5_vb8j4")
 
 [node name="Area2D" type="Area2D" parent="Control"]
 position = Vector2(311, 222)
@@ -82,7 +82,7 @@ offset_top = -30.0
 offset_right = 78.0
 offset_bottom = 25.0
 text = "point2"
-label_settings = ExtResource("4_7lr7t")
+label_settings = ExtResource("5_vb8j4")
 
 [connection signal="endDialogue" from="player" to="CanvasLayer" method="_on_player_end_dialogue"]
 [connection signal="triggerDialogue" from="player" to="CanvasLayer" method="_on_player_trigger_dialogue"]

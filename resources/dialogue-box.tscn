@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cae42itohucmj"]
 
-[ext_resource type="LabelSettings" uid="uid://cn1kj6c4x1gfw" path="res://text-font-example2.tres" id="1_nieut"]
 [ext_resource type="Script" path="res://scripts/dialogue-box.gd" id="1_w57kn"]
+[ext_resource type="LabelSettings" uid="uid://cn1kj6c4x1gfw" path="res://scenes/demos/dialogue/text-font-example2.tres" id="2_28qjo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t66og"]
 bg_color = Color(1, 1, 1, 1)
@@ -28,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
 
-[node name="Panel" type="Panel" parent="Control"]
+[node name="Textbox" type="Panel" parent="Control"]
 layout_mode = 0
 offset_left = -261.0
 offset_top = -178.0
@@ -36,7 +36,7 @@ offset_right = 525.0
 offset_bottom = 2.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_t66og")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/Textbox"]
 layout_mode = 0
 offset_left = 6.0
 offset_top = 6.0
@@ -45,15 +45,15 @@ offset_bottom = 171.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_right = 20
 
-[node name="Label" type="Label" parent="Control/Panel/MarginContainer"]
+[node name="Dialogue Text" type="Label" parent="Control/Textbox/MarginContainer"]
 layout_mode = 2
 text = "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-label_settings = ExtResource("1_nieut")
+label_settings = ExtResource("2_28qjo")
 autowrap_mode = 2
 max_lines_visible = 3
 metadata/_edit_lock_ = true
 
-[node name="Panel2" type="Panel" parent="Control"]
+[node name="CharacterPhoto" type="Panel" parent="Control"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0

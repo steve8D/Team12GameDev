@@ -1,0 +1,105 @@
+[gd_scene load_steps=12 format=3 uid="uid://cs6fydcjj7sw8"]
+
+[ext_resource type="Texture2D" uid="uid://883cwu0p6det" path="res://assets/world/earth/deep forest.png" id="1_k5on3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lau6"]
+size = Vector2(121.313, 14.1875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5kd5"]
+size = Vector2(97, 14.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5k8ts"]
+size = Vector2(123, 15.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ulq70"]
+size = Vector2(134.031, 17.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxhl5"]
+size = Vector2(100, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_winww"]
+size = Vector2(102, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bvrj"]
+size = Vector2(123, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6iqj"]
+size = Vector2(101, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xc55u"]
+size = Vector2(94, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbm3u"]
+size = Vector2(34, 711)
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+position = Vector2(518, 174)
+
+[node name="DeepForest" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(332.9, 155)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("1_k5on3")
+
+[node name="platforms" type="StaticBody2D" parent="."]
+position = Vector2(521, 166)
+disable_mode = 1
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="platforms"]
+position = Vector2(-106, 122)
+shape = SubResource("RectangleShape2D_1lau6")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="platforms"]
+position = Vector2(-450, 147)
+shape = SubResource("RectangleShape2D_l5kd5")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="platforms"]
+position = Vector2(86, 220)
+shape = SubResource("RectangleShape2D_5k8ts")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="platforms"]
+position = Vector2(-291.016, 281.25)
+shape = SubResource("RectangleShape2D_ulq70")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="platforms"]
+position = Vector2(361, 289)
+shape = SubResource("RectangleShape2D_oxhl5")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="platforms"]
+position = Vector2(537, 132)
+shape = SubResource("RectangleShape2D_winww")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="platforms"]
+position = Vector2(806.5, 277)
+shape = SubResource("RectangleShape2D_4bvrj")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="platforms"]
+position = Vector2(965.5, 194)
+shape = SubResource("RectangleShape2D_s6iqj")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="platforms"]
+position = Vector2(781, 65)
+shape = SubResource("RectangleShape2D_xc55u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="platforms"]
+position = Vector2(781, 65)
+shape = SubResource("RectangleShape2D_xc55u")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="platforms"]
+position = Vector2(1060, 63.5)
+shape = SubResource("RectangleShape2D_xc55u")
+
+[node name="World Borders" type="StaticBody2D" parent="."]
+disable_mode = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Borders"]
+polygon = PackedVector2Array(8, 600, 233, 603, 591, 598, 811, 603, 1030, 594, 1298, 591, 1394, 573, 1562, 579, 1712, 576, 1718, 650, -2, 660)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World Borders"]
+position = Vector2(-21, 314)
+shape = SubResource("RectangleShape2D_sbm3u")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="World Borders"]
+position = Vector2(1716, 305)
+shape = SubResource("RectangleShape2D_sbm3u")

@@ -1,19 +1,25 @@
 extends CharacterBody2D
 
-@export var speed: int = 400
-var mode: int = 0:
-	set(value):
-		mode = value
-	get:
-		return mode
+const SPEED = 200.0
+const JUMP_VELOCITY = -600.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func get_input():
-	var input_direction = Input.get_vector("a", "d", "w", "s")
-	velocity = input_direction * speed
 
-func _physics_process(_delta):
-	get_input()
+func _physics_process(delta):
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	# Handle Jump.
+	if Input.is_action_just_pressed("w") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction = Input.get_axis("a", "d")
+
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
 	

@@ -1,21 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://0kh7aaft4wme"]
+[gd_scene load_steps=5 format=3 uid="uid://b2httphahcrck"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2vn8m"]
 [ext_resource type="Texture2D" uid="uid://c44fv5wcvykop" path="res://assets/sprites/player/sample_player.png" id="2_xp4r6"]
-[ext_resource type="PackedScene" uid="uid://cs6fydcjj7sw8" path="res://assets/world/earth/scene/prologue.tscn" id="3_vs3vp"]
-[ext_resource type="Script" path="res://assets/world/earth/scene/prologue.gd" id="4_gporr"]
+[ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/world/earth/scene/prologue.tscn" id="3_vs3vp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwcwx"]
-size = Vector2(5.92993, 5.55862)
+size = Vector2(4.59339, 0.700204)
 
 [node name="Game" type="Node2D"]
 
 [node name="Background" parent="." instance=ExtResource("3_vs3vp")]
-script = ExtResource("4_gporr")
 
 [node name="player" type="CharacterBody2D" parent="."]
-position = Vector2(1513, 267)
+position = Vector2(29.0001, 305)
 scale = Vector2(0.994953, 0.950902)
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("1_2vn8m")
 
 [node name="Sprite2D" type="Sprite2D" parent="player"]
@@ -24,7 +24,7 @@ scale = Vector2(0.287911, 0.287911)
 texture = ExtResource("2_xp4r6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
-position = Vector2(74.8779, 245.191)
+position = Vector2(74.3753, 278.179)
 scale = Vector2(10.0652, 13.5797)
 shape = SubResource("RectangleShape2D_vwcwx")
 

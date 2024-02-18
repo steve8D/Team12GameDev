@@ -1,16 +1,43 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch7xo0dpl8e8x"]
+[gd_scene load_steps=15 format=3 uid="uid://ch7xo0dpl8e8x"]
 
 [ext_resource type="Texture2D" uid="uid://883cwu0p6det" path="res://assets/world/earth/deep forest.png" id="1_k5on3"]
-[ext_resource type="Script" path="res://scripts/platforms.gd" id="2_2ho1g"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5kd5"]
-size = Vector2(144, 14.25)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xjfk"]
-size = Vector2(97, 33)
+[ext_resource type="PackedScene" uid="uid://dtq1tu4f35rh3" path="res://assets/world/earth/scene/platforms.tscn" id="2_ap4mm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbm3u"]
 size = Vector2(34, 711)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4f1vt"]
+size = Vector2(154, 23.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5hvic"]
+size = Vector2(148, 33.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2kjp"]
+size = Vector2(140.75, 18.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ycpqw"]
+size = Vector2(136.75, 22.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_745ds"]
+size = Vector2(132, 22.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fwio7"]
+size = Vector2(119, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7a13"]
+size = Vector2(116, 17.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv1lx"]
+size = Vector2(136, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_molxt"]
+size = Vector2(133, 21.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdmhw"]
+size = Vector2(116.75, 22.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3od84"]
+size = Vector2(109, 22.75)
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 
@@ -21,24 +48,6 @@ position = Vector2(518, 174)
 position = Vector2(332.9, 155)
 scale = Vector2(1.6, 1.6)
 texture = ExtResource("1_k5on3")
-
-[node name="platforms" type="StaticBody2D" parent="."]
-position = Vector2(521, 166)
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("2_2ho1g")
-
-[node name="CollisionShape2D12" type="CollisionShape2D" parent="platforms"]
-position = Vector2(-291, 286)
-shape = SubResource("RectangleShape2D_l5kd5")
-
-[node name="Area2D" type="Area2D" parent="platforms"]
-collision_layer = 2
-collision_mask = 2
-
-[node name="CollisionShape2D10" type="CollisionShape2D" parent="platforms/Area2D"]
-position = Vector2(-294, 274)
-shape = SubResource("RectangleShape2D_0xjfk")
 
 [node name="World Borders" type="StaticBody2D" parent="."]
 disable_mode = 2
@@ -54,7 +63,122 @@ shape = SubResource("RectangleShape2D_sbm3u")
 position = Vector2(1716, 305)
 shape = SubResource("RectangleShape2D_sbm3u")
 
-[connection signal="body_shape_entered" from="platforms/Area2D" to="platforms" method="_on_area_2d_body_shape_entered"]
-[connection signal="body_shape_entered" from="platforms/Area2D" to="platforms/Area2D" method="_on_body_shape_entered"]
-[connection signal="body_shape_exited" from="platforms/Area2D" to="platforms" method="_on_area_2d_body_shape_exited"]
-[connection signal="body_shape_exited" from="platforms/Area2D" to="platforms/Area2D" method="_on_body_shape_exited"]
+[node name="Platforms" type="Node" parent="."]
+
+[node name="platforms" parent="Platforms" instance=ExtResource("2_ap4mm")]
+
+[node name="CollisionShape2D12" parent="Platforms/platforms" index="0"]
+position = Vector2(-292, 290.438)
+shape = SubResource("RectangleShape2D_4f1vt")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms/Area2D" index="0"]
+shape = SubResource("RectangleShape2D_5hvic")
+
+[node name="platforms2" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(704, 6)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms2" index="0"]
+position = Vector2(-292.375, 287.938)
+shape = SubResource("RectangleShape2D_p2kjp")
+
+[node name="platforms3" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(369, 27)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms3" index="0"]
+position = Vector2(-295.5, 289.938)
+
+[node name="platforms4" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(899, 97)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms4" index="0"]
+position = Vector2(-294.375, 289.938)
+shape = SubResource("RectangleShape2D_ycpqw")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms4/Area2D" index="0"]
+position = Vector2(-295, 279.375)
+shape = SubResource("RectangleShape2D_745ds")
+
+[node name="platforms5" parent="Platforms" instance=ExtResource("2_ap4mm")]
+
+[node name="CollisionShape2D12" parent="Platforms/platforms5" index="0"]
+position = Vector2(358.5, 286)
+shape = SubResource("RectangleShape2D_fwio7")
+
+[node name="Area2D" parent="Platforms/platforms5" index="1"]
+position = Vector2(640, -11)
+
+[node name="CollisionShape2D10" parent="Platforms/platforms5/Area2D" index="0"]
+position = Vector2(-281, 289.875)
+shape = SubResource("RectangleShape2D_b7a13")
+
+[node name="platforms9" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(956, 164)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms9" index="0"]
+position = Vector2(367, 286)
+shape = SubResource("RectangleShape2D_hv1lx")
+
+[node name="Area2D" parent="Platforms/platforms9" index="1"]
+position = Vector2(640, -11)
+
+[node name="CollisionShape2D10" parent="Platforms/platforms9/Area2D" index="0"]
+position = Vector2(-272.5, 287.875)
+shape = SubResource("RectangleShape2D_molxt")
+
+[node name="platforms10" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(1875, -45)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms10" index="0"]
+position = Vector2(-294.375, 287)
+shape = SubResource("RectangleShape2D_xdmhw")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms10/Area2D" index="0"]
+position = Vector2(-295.5, 279.375)
+shape = SubResource("RectangleShape2D_3od84")
+
+[node name="platforms11" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(1778, 79)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms11" index="0"]
+position = Vector2(-294.375, 287)
+shape = SubResource("RectangleShape2D_xdmhw")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms11/Area2D" index="0"]
+position = Vector2(-295.5, 279.375)
+shape = SubResource("RectangleShape2D_3od84")
+
+[node name="platforms12" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(1594, -55)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms12" index="0"]
+position = Vector2(-294.375, 287)
+shape = SubResource("RectangleShape2D_xdmhw")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms12/Area2D" index="0"]
+position = Vector2(-295.5, 279.375)
+shape = SubResource("RectangleShape2D_3od84")
+
+[node name="platforms13" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(1594, -55)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms13" index="0"]
+position = Vector2(-538, 363)
+shape = SubResource("RectangleShape2D_xdmhw")
+
+[node name="Area2D" parent="Platforms/platforms13" index="1"]
+position = Vector2(-243.625, 76)
+
+[node name="CollisionShape2D10" parent="Platforms/platforms13/Area2D" index="0"]
+position = Vector2(-295.5, 279.375)
+shape = SubResource("RectangleShape2D_3od84")
+
+[editable path="Platforms/platforms"]
+[editable path="Platforms/platforms2"]
+[editable path="Platforms/platforms3"]
+[editable path="Platforms/platforms4"]
+[editable path="Platforms/platforms5"]
+[editable path="Platforms/platforms9"]
+[editable path="Platforms/platforms10"]
+[editable path="Platforms/platforms11"]
+[editable path="Platforms/platforms12"]
+[editable path="Platforms/platforms13"]

@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/world/earth/scene/prologue.tscn" id="3_vs3vp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwcwx"]
-size = Vector2(4.59339, 0.700204)
+size = Vector2(4.59339, 5.19182)
 
 [node name="Game" type="Node2D"]
 
@@ -24,7 +24,7 @@ scale = Vector2(0.287911, 0.287911)
 texture = ExtResource("2_xp4r6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
-position = Vector2(74.3753, 278.179)
+position = Vector2(74.3753, 247.682)
 scale = Vector2(10.0652, 13.5797)
 shape = SubResource("RectangleShape2D_vwcwx")
 

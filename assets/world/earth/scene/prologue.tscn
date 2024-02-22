@@ -10,7 +10,7 @@ size = Vector2(34, 711)
 size = Vector2(154, 23.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hvic"]
-size = Vector2(148, 33.5)
+size = Vector2(148, 55.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p2kjp"]
 size = Vector2(140.75, 18.125)
@@ -25,19 +25,19 @@ size = Vector2(132, 22.75)
 size = Vector2(119, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7a13"]
-size = Vector2(116, 17.75)
+size = Vector2(116, 35.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hv1lx"]
 size = Vector2(136, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_molxt"]
-size = Vector2(133, 21.75)
+size = Vector2(133, 45.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xdmhw"]
 size = Vector2(116.75, 22.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3od84"]
-size = Vector2(109, 22.75)
+size = Vector2(109, 44.25)
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 
@@ -53,7 +53,7 @@ texture = ExtResource("1_k5on3")
 disable_mode = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Borders"]
-polygon = PackedVector2Array(8, 600, 233, 603, 591, 598, 811, 603, 1030, 594, 1298, 591, 1394, 573, 1562, 579, 1712, 576, 1718, 650, -2, 660)
+polygon = PackedVector2Array(6, 588, 229, 581, 588, 575, 806, 569, 1033, 569, 1297, 561, 1409, 553, 1572, 553, 1713, 554, 1718, 650, -2, 660)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World Borders"]
 position = Vector2(-21, 314)
@@ -72,6 +72,7 @@ position = Vector2(-292, 290.438)
 shape = SubResource("RectangleShape2D_4f1vt")
 
 [node name="CollisionShape2D10" parent="Platforms/platforms/Area2D" index="0"]
+position = Vector2(-292, 269.563)
 shape = SubResource("RectangleShape2D_5hvic")
 
 [node name="platforms2" parent="Platforms" instance=ExtResource("2_ap4mm")]
@@ -80,6 +81,9 @@ position = Vector2(704, 6)
 [node name="CollisionShape2D12" parent="Platforms/platforms2" index="0"]
 position = Vector2(-292.375, 287.938)
 shape = SubResource("RectangleShape2D_p2kjp")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms2/Area2D" index="0"]
+position = Vector2(-292, 268.875)
 
 [node name="platforms3" parent="Platforms" instance=ExtResource("2_ap4mm")]
 position = Vector2(369, 27)
@@ -108,7 +112,7 @@ shape = SubResource("RectangleShape2D_fwio7")
 position = Vector2(640, -11)
 
 [node name="CollisionShape2D10" parent="Platforms/platforms5/Area2D" index="0"]
-position = Vector2(-281, 289.875)
+position = Vector2(-281, 280.875)
 shape = SubResource("RectangleShape2D_b7a13")
 
 [node name="platforms9" parent="Platforms" instance=ExtResource("2_ap4mm")]
@@ -122,7 +126,7 @@ shape = SubResource("RectangleShape2D_hv1lx")
 position = Vector2(640, -11)
 
 [node name="CollisionShape2D10" parent="Platforms/platforms9/Area2D" index="0"]
-position = Vector2(-272.5, 287.875)
+position = Vector2(-272.5, 275.875)
 shape = SubResource("RectangleShape2D_molxt")
 
 [node name="platforms10" parent="Platforms" instance=ExtResource("2_ap4mm")]
@@ -133,7 +137,7 @@ position = Vector2(-294.375, 287)
 shape = SubResource("RectangleShape2D_xdmhw")
 
 [node name="CollisionShape2D10" parent="Platforms/platforms10/Area2D" index="0"]
-position = Vector2(-295.5, 279.375)
+position = Vector2(-295.5, 273.875)
 shape = SubResource("RectangleShape2D_3od84")
 
 [node name="platforms11" parent="Platforms" instance=ExtResource("2_ap4mm")]
@@ -144,7 +148,7 @@ position = Vector2(-294.375, 287)
 shape = SubResource("RectangleShape2D_xdmhw")
 
 [node name="CollisionShape2D10" parent="Platforms/platforms11/Area2D" index="0"]
-position = Vector2(-295.5, 279.375)
+position = Vector2(-295.5, 274.125)
 shape = SubResource("RectangleShape2D_3od84")
 
 [node name="platforms12" parent="Platforms" instance=ExtResource("2_ap4mm")]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b2httphahcrck"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_2vn8m"]
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="2_sdcwa"]
 [ext_resource type="Texture2D" uid="uid://c44fv5wcvykop" path="res://assets/sprites/player/sample_player.png" id="2_xp4r6"]
 [ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/world/earth/scene/prologue.tscn" id="3_vs3vp"]
 
@@ -16,7 +16,7 @@ position = Vector2(29.0001, 305)
 scale = Vector2(0.994953, 0.950902)
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("1_2vn8m")
+script = ExtResource("2_sdcwa")
 
 [node name="Sprite2D" type="Sprite2D" parent="player"]
 position = Vector2(74.8779, 245.608)
@@ -31,3 +31,9 @@ shape = SubResource("RectangleShape2D_vwcwx")
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(80.406, 256.598)
 limit_bottom = 650
+
+[node name="SprintTimer" type="Timer" parent="player"]
+wait_time = 4.0
+one_shot = true
+
+[connection signal="timeout" from="player/SprintTimer" to="player" method="_on_sprint_timer_timeout"]

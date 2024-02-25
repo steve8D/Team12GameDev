@@ -31,9 +31,3 @@ shape = SubResource("RectangleShape2D_vwcwx")
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(80.406, 256.598)
 limit_bottom = 650
-
-[node name="SprintTimer" type="Timer" parent="player"]
-wait_time = 4.0
-one_shot = true
-
-[connection signal="timeout" from="player/SprintTimer" to="player" method="_on_sprint_timer_timeout"]

@@ -33,13 +33,13 @@ metadata/_edit_vertical_guides_ = []
 position = Vector2(0, 356)
 scale = Vector2(1510, 288)
 mesh = SubResource("BoxMesh_fojav")
-
 [node name="player" type="CharacterBody2D" parent="."]
 scale = Vector2(0.994953, 0.950902)
 script = ExtResource("1_r005y")
 
 [node name="Sprite2D" type="Sprite2D" parent="player"]
 texture = ExtResource("2_3fyhv")
+
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 scale = Vector2(10, 14)
@@ -97,3 +97,4 @@ text = "point3"
 label_settings = SubResource("LabelSettings_xwfwc")
 
 [node name="Area2D" type="Area2D" parent="."]
+

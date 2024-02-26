@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://b8jccqmt5m22p"]
+
+[sub_resource type="FontVariation" id="FontVariation_1tpeu"]
+
+[resource]
+font = SubResource("FontVariation_1tpeu")
+font_size = 72

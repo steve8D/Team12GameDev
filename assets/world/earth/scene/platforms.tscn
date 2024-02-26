@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtq1tu4f35rh3"]
+
+[ext_resource type="Script" path="res://scripts/platforms.gd" id="1_yxrs5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5kd5"]
+size = Vector2(143.5, 22.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xjfk"]
+size = Vector2(126, 43.75)
+
+[node name="platforms" type="StaticBody2D"]
+position = Vector2(521, 166)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_yxrs5")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="."]
+position = Vector2(-291, 289.938)
+shape = SubResource("RectangleShape2D_l5kd5")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-292, 280.375)
+shape = SubResource("RectangleShape2D_0xjfk")
+
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="body_shape_entered" from="Area2D" to="Area2D" method="_on_body_shape_entered"]
+[connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]
+[connection signal="body_shape_exited" from="Area2D" to="Area2D" method="_on_body_shape_exited"]

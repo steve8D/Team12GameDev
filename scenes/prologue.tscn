@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2httphahcrck"]
+
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="2_sdcwa"]
+[ext_resource type="Texture2D" uid="uid://c44fv5wcvykop" path="res://assets/sprites/player/sample_player.png" id="2_xp4r6"]
+[ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/world/earth/scene/prologue.tscn" id="3_vs3vp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwcwx"]
+size = Vector2(4.59339, 0.855126)
+
+[node name="Game" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource("3_vs3vp")]
+
+[node name="player" type="CharacterBody2D" parent="."]
+position = Vector2(29.0001, 305)
+scale = Vector2(0.994953, 0.950902)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("2_sdcwa")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+position = Vector2(74.8779, 245.608)
+scale = Vector2(0.287911, 0.287911)
+texture = ExtResource("2_xp4r6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2(74.3753, 277.128)
+scale = Vector2(10.0652, 13.5797)
+shape = SubResource("RectangleShape2D_vwcwx")
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(80.406, 256.598)
+limit_bottom = 650

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5gngn4xi3dw1"
-path="res://.godot/imported/ma portrait.png-38af67dacda96075425d5682463ccbd9.ctex"
+uid="uid://c0vc5iyo2ac8b"
+path="res://.godot/imported/v1_health_bar.png-8e4549ad8c4742729ab703eec6e24d92.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/ma portrait.png"
-dest_files=["res://.godot/imported/ma portrait.png-38af67dacda96075425d5682463ccbd9.ctex"]
+source_file="res://assets/ui/base/v1_health_bar.png"
+dest_files=["res://.godot/imported/v1_health_bar.png-8e4549ad8c4742729ab703eec6e24d92.ctex"]
 
 [params]
 

@@ -10,6 +10,7 @@ const STAMINA_RECOVERY_RATE = 100
 var stamina = 100
 var sprinting = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var _animation_player = $AnimatedSprite2D
 
 func _physics_process(delta):
 	var direction = Input.get_axis("move_left", "move_right")
@@ -18,6 +19,14 @@ func _physics_process(delta):
 	check_for_sprint()	
 	handle_sprint(direction, delta)
 	move_and_slide()
+	move_animation(direction)
+	
+func move_animation(direction):
+	if direction < 0:
+		_animation_player.play("running")
+		_animation_player.flip_h = false
+	else:
+		_animation_player.flip_h = true
 	
 func _on_sprint_timer_timeout():
 	sprinting = false

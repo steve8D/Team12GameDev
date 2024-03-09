@@ -1,0 +1,63 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://cj1i027jpplmp"]
+
+[ext_resource type="Texture2D" uid="uid://dsom84r4m8e6w" path="res://assets/sprites/player/farren_sheet_1.png" id="1_3akqk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7sib"]
+atlas = ExtResource("1_3akqk")
+region = Rect2(1, 0, 25, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkl55"]
+atlas = ExtResource("1_3akqk")
+region = Rect2(27, 0, 25, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1r5vr"]
+atlas = ExtResource("1_3akqk")
+region = Rect2(27, 38, 25, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djmy4"]
+atlas = ExtResource("1_3akqk")
+region = Rect2(1, 38, 25, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhghp"]
+atlas = ExtResource("1_3akqk")
+region = Rect2(79, 38, 25, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsc87"]
+atlas = ExtResource("1_3akqk")
+region = Rect2(53, 38, 25, 37)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7sib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkl55")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1r5vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djmy4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhghp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsc87")
+}],
+"loop": true,
+"name": &"running",
+"speed": 5.0
+}]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hrifx1ubh2fa"
-path="res://.godot/imported/farren portrait.png-99d5cc72b47f24f7ad0b04c62bcce91f.ctex"
+uid="uid://dga3hkjm4m17y"
+path="res://.godot/imported/v1_stamina_bar.png-f48044c5c63fb188e19130b7bb1044ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/farren portrait.png"
-dest_files=["res://.godot/imported/farren portrait.png-99d5cc72b47f24f7ad0b04c62bcce91f.ctex"]
+source_file="res://assets/ui/base/v1_stamina_bar.png"
+dest_files=["res://.godot/imported/v1_stamina_bar.png-f48044c5c63fb188e19130b7bb1044ae.ctex"]
 
 [params]
 

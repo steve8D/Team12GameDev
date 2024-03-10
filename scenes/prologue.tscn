@@ -1,33 +1,197 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2httphahcrck"]
+[gd_scene load_steps=14 format=3 uid="uid://dk10laqm4ouhs"]
 
-[ext_resource type="Script" path="res://scripts/player_movement.gd" id="2_sdcwa"]
-[ext_resource type="Texture2D" uid="uid://c44fv5wcvykop" path="res://assets/sprites/player/sample_player.png" id="2_xp4r6"]
-[ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/world/earth/scene/prologue.tscn" id="3_vs3vp"]
+[ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/world/earth/scene/prologue.tscn" id="1_0mlr8"]
+[ext_resource type="Script" path="res://scripts/scene/AnimationPlayer.gd" id="2_6crle"]
+[ext_resource type="Script" path="res://scripts/gameplay/player_movement.gd" id="3_mms78"]
+[ext_resource type="Script" path="res://scripts/scene/TooltipLabel.gd" id="5_0jfxi"]
+[ext_resource type="PackedScene" uid="uid://civnl8y32q1la" path="res://resources/dialogue-box.tscn" id="5_hu444"]
+[ext_resource type="Script" path="res://scripts/gameplay/StaminaBar.gd" id="6_pyji4"]
+
+[sub_resource type="Animation" id="Animation_alkeq"]
+resource_name = "frame1"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-757, 551), Vector2(-402, 546)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ToolTip1")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(4.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"showLabel"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Dialogue Box")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["It’s getting dark. Ma and Da are waiting for me to bring back those berries…(a beat, then a sigh)The gates will close soon – I should hurry."],
+"method": &"setText"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Dialogue Box:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Dialogue Box:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Player Hud:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(4.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3m7ot"]
+resource_name = "frame2"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_epvd2"]
+_data = {
+"frame1": SubResource("Animation_alkeq"),
+"frame2": SubResource("Animation_3m7ot")
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6deuh"]
+load_path = "res://.godot/imported/sample_player.png-9b17891c7ebe44c7f46101f8b5cae296.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwcwx"]
 size = Vector2(4.59339, 0.855126)
 
-[node name="Game" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31fx1"]
+size = Vector2(150.75, 143)
 
-[node name="Background" parent="." instance=ExtResource("3_vs3vp")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmg0r"]
+bg_color = Color(0.976471, 0.933333, 0.839216, 1)
+
+[node name="Game" type="Node2D"]
+position = Vector2(444, -2)
+
+[node name="Background" parent="." instance=ExtResource("1_0mlr8")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_epvd2")
+}
+script = ExtResource("2_6crle")
 
 [node name="player" type="CharacterBody2D" parent="."]
-position = Vector2(29.0001, 305)
+position = Vector2(-757, 551)
 scale = Vector2(0.994953, 0.950902)
 collision_layer = 2
 collision_mask = 3
-script = ExtResource("2_sdcwa")
+script = ExtResource("3_mms78")
 
 [node name="Sprite2D" type="Sprite2D" parent="player"]
-position = Vector2(74.8779, 245.608)
+position = Vector2(74.878, 0)
 scale = Vector2(0.287911, 0.287911)
-texture = ExtResource("2_xp4r6")
+texture = SubResource("CompressedTexture2D_6deuh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
-position = Vector2(74.3753, 277.128)
+position = Vector2(75.3805, 31.549)
 scale = Vector2(10.0652, 13.5797)
 shape = SubResource("RectangleShape2D_vwcwx")
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-position = Vector2(80.406, 256.598)
+position = Vector2(300, 0)
+limit_left = -100
 limit_bottom = 650
+editor_draw_limits = true
+
+[node name="ToolTip1" type="Label" parent="."]
+visible = false
+offset_left = -400.0
+offset_top = 485.0
+offset_right = -239.0
+offset_bottom = 511.0
+text = "Press A or D to move"
+script = ExtResource("5_0jfxi")
+
+[node name="ToolTip2 Collider Area" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToolTip2 Collider Area"]
+position = Vector2(6, 513)
+shape = SubResource("RectangleShape2D_31fx1")
+debug_color = Color(0.6, 0.388235, 0.960784, 0.419608)
+
+[node name="Tooltip2" type="Label" parent="ToolTip2 Collider Area"]
+visible = false
+offset_left = -68.0
+offset_top = 547.0
+offset_right = 187.0
+offset_bottom = 573.0
+text = "Press W or S to move up or down"
+script = ExtResource("5_0jfxi")
+
+[node name="Dialogue Box" parent="." instance=ExtResource("5_hu444")]
+visible = false
+
+[node name="Player Hud" type="CanvasLayer" parent="."]
+
+[node name="StaminaBar" type="ProgressBar" parent="Player Hud"]
+offset_left = 27.0
+offset_top = 24.0
+offset_right = 294.0
+offset_bottom = 68.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_fmg0r")
+value = 20.0
+show_percentage = false
+script = ExtResource("6_pyji4")
+
+[node name="Quest" type="Label" parent="Player Hud"]
+visible = false
+offset_left = 938.0
+offset_top = 22.0
+offset_right = 1209.0
+offset_bottom = 62.0
+text = "Find a Lumenberry"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[connection signal="staminaValue" from="player" to="Player Hud/StaminaBar" method="updateStaminaUI"]
+[connection signal="body_entered" from="ToolTip2 Collider Area" to="ToolTip2 Collider Area/Tooltip2" method="_on_area_2d_body_entered"]

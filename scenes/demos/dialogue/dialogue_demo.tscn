@@ -1,10 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://bu36u7heeikt1"]
 
-[ext_resource type="PackedScene" uid="uid://cae42itohucmj" path="res://resources/dialogue-box.tscn" id="1_ieblf"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="2_kcic5"]
-[ext_resource type="Texture2D" uid="uid://c44fv5wcvykop" path="res://sprites/player/sample_player.png" id="3_jr2d0"]
+[ext_resource type="PackedScene" uid="uid://civnl8y32q1la" path="res://resources/dialogue-box.tscn" id="1_ieblf"]
+[ext_resource type="Script" path="res://scenes/demos/dialogue/player.gd" id="2_32wso"]
 [ext_resource type="LabelSettings" uid="uid://b8jccqmt5m22p" path="res://scenes/demos/dialogue/text-font-example.tres" id="4_70lgp"]
 [ext_resource type="LabelSettings" uid="uid://cn1kj6c4x1gfw" path="res://scenes/demos/dialogue/text-font-example2.tres" id="5_vb8j4"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6deuh"]
+load_path = "res://.godot/imported/sample_player.png-9b17891c7ebe44c7f46101f8b5cae296.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4qjp"]
 
@@ -18,10 +20,10 @@ metadata/_edit_vertical_guides_ = []
 
 [node name="player" type="CharacterBody2D" parent="."]
 scale = Vector2(0.994953, 0.950902)
-script = ExtResource("2_kcic5")
+script = ExtResource("2_32wso")
 
 [node name="Sprite2D" type="Sprite2D" parent="player"]
-texture = ExtResource("3_jr2d0")
+texture = SubResource("CompressedTexture2D_6deuh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 scale = Vector2(10, 14)

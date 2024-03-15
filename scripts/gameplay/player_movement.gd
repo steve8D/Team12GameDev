@@ -14,7 +14,6 @@ signal staminaValue(value)
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var healthBar = $StaminaBar
 @onready var _animation_player = $AnimatedSprite2D
-@onready var healthBar = $StaminaBar
 
 func _physics_process(delta):
 	var direction = Input.get_axis("move_left", "move_right")

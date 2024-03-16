@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/world/earth/scene/prologue.tscn" id="1_0mlr8"]
 [ext_resource type="Script" path="res://scripts/scene/AnimationPlayer.gd" id="2_6crle"]
 [ext_resource type="Script" path="res://scripts/gameplay/player_movement.gd" id="3_mms78"]
-[ext_resource type="SpriteFrames" uid="uid://cj1i027jpplmp" path="res://assets/sprites/player/farren.tres" id="4_6rubt"]
+[ext_resource type="SpriteFrames" uid="uid://mscqk7s1lcso" path="res://assets/sprites/player/farren.tres" id="4_6rubt"]
 [ext_resource type="Script" path="res://scripts/scene/TooltipLabel.gd" id="5_0jfxi"]
 [ext_resource type="PackedScene" uid="uid://civnl8y32q1la" path="res://resources/dialogue-box.tscn" id="5_hu444"]
 [ext_resource type="Script" path="res://scripts/gameplay/StaminaBar.gd" id="6_pyji4"]
@@ -139,7 +139,6 @@ editor_draw_limits = true
 position = Vector2(75.3804, -8.41309)
 scale = Vector2(2.50136, 2.50136)
 sprite_frames = ExtResource("4_6rubt")
-animation = &"running"
 
 [node name="ToolTip1" type="Label" parent="."]
 visible = false

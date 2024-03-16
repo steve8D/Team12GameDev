@@ -1,29 +1,45 @@
-[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://cj1i027jpplmp"]
+[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://mscqk7s1lcso"]
 
-[ext_resource type="Texture2D" uid="uid://dsom84r4m8e6w" path="res://assets/sprites/player/farren_sheet_1.png" id="1_3akqk"]
+[ext_resource type="Texture2D" uid="uid://dsom84r4m8e6w" path="res://assets/sprites/player/farren_sheet_1.png" id="1_lm1ec"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x7sib"]
-atlas = ExtResource("1_3akqk")
+atlas = ExtResource("1_lm1ec")
 region = Rect2(1, 0, 25, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dkl55"]
-atlas = ExtResource("1_3akqk")
+atlas = ExtResource("1_lm1ec")
 region = Rect2(27, 0, 25, 37)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_e64qf"]
+atlas = ExtResource("1_lm1ec")
+region = Rect2(0, 76, 26, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifngb"]
+atlas = ExtResource("1_lm1ec")
+region = Rect2(26, 76, 26, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_465jt"]
+atlas = ExtResource("1_lm1ec")
+region = Rect2(52, 76, 26, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bixn5"]
+atlas = ExtResource("1_lm1ec")
+region = Rect2(78, 76, 26, 38)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1r5vr"]
-atlas = ExtResource("1_3akqk")
+atlas = ExtResource("1_lm1ec")
 region = Rect2(27, 38, 25, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_djmy4"]
-atlas = ExtResource("1_3akqk")
+atlas = ExtResource("1_lm1ec")
 region = Rect2(1, 38, 25, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhghp"]
-atlas = ExtResource("1_3akqk")
+atlas = ExtResource("1_lm1ec")
 region = Rect2(79, 38, 25, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dsc87"]
-atlas = ExtResource("1_3akqk")
+atlas = ExtResource("1_lm1ec")
 region = Rect2(53, 38, 25, 37)
 
 [resource]
@@ -39,7 +55,19 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_e64qf")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_ifngb")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_465jt")
+}, {
+"duration": 1.2,
+"texture": SubResource("AtlasTexture_bixn5")
+}],
 "loop": true,
 "name": &"jumping",
 "speed": 5.0

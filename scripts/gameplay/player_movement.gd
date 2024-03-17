@@ -15,6 +15,7 @@ const JUMP_STAMINA_COST = 20
 
 # File variables
 var stamina = 100
+var sprinting = false
 var state = MOVE_SET.STANDING
 signal staminaValue(value)
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -22,33 +23,31 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left", "move_right", "jump_up", "jump_down")
-	handle_vertical_movement(direction, delta)
 	handle_lateral_movement(direction, delta)
+	handle_vertical_movement(direction, delta)
 	check_for_sprint()	
 	handle_sprint(direction, delta)
+	process_animation()
 	move_and_slide()
 	
-func _on_sprint_timer_timeout():
-	state = MOVE_SET.WALKING
-	# set timer for cooldown
-
 # Helper functions
 func check_for_sprint():
-	if Input.is_action_pressed("sprint") and is_on_floor() and stamina >= 0:
+	if Input.is_action_just_pressed("sprint") and is_on_floor() and stamina >= 0:
 		state = MOVE_SET.SPRINTING
+		sprinting = true
 		
 	if Input.is_action_just_released("sprint") or stamina <= 0:
 		state = MOVE_SET.WALKING
+		sprinting = false
 
 func handle_sprint(direction, delta):
-	if state == MOVE_SET.SPRINTING and direction:
+	if sprinting and direction:
 		velocity.x = direction.x * SPRINT_SPEED
 		stamina -= delta * RUNNING_STAMINA_COST
 		staminaValue.emit(stamina)
-		process_animation()
+		
 	else:
 		if stamina <= 100:
-			state == MOVE_SET.WALKING
 			stamina += delta * STAMINA_RECOVERY_RATE
 			staminaValue.emit(stamina)
 
@@ -57,21 +56,16 @@ func handle_vertical_movement(direction, delta):
 	if not is_on_floor():
 		state = MOVE_SET.JUMPING
 		velocity.y += gravity * delta
-		process_animation()
 		
 	# Handle Jump.
 	if direction.y < 0 and is_on_floor():
-		state = MOVE_SET.JUMPING
-		process_animation()
-		if state == MOVE_SET.SPRINTING:
-			velocity.x = direction.x * SPRINT_SPEED
 		velocity.y = JUMP_VELOCITY
 		stamina -= JUMP_STAMINA_COST
+		state = MOVE_SET.JUMPING
 	
 	# Handle drop from platform
 	if direction.y > 0 and not is_on_floor():
 		state = MOVE_SET.JUMPING
-		process_animation()
 		velocity.y = DROP_VELOCITY
 	
 func handle_lateral_movement(direction, delta):
@@ -79,12 +73,10 @@ func handle_lateral_movement(direction, delta):
 		if is_on_floor():
 			state = MOVE_SET.WALKING
 		velocity.x = direction.x * SPEED
-		process_animation()
 	else:
 		if is_on_floor():
 			state = MOVE_SET.STANDING
 		velocity.x = move_toward(velocity.x, 0, 20)
-		process_animation()
 
 func process_animation():
 	if velocity.x < 0:

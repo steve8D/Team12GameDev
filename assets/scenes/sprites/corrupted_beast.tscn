@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfsrcdaj78ouw"]
+
+[ext_resource type="Texture2D" uid="uid://bat733c63af6v" path="res://assets/sprites/beasts/corrupted beast.png" id="1_h6eu7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kaxy7"]
+size = Vector2(181, 145)
+
+[node name="Corrupted Beast" type="RigidBody2D"]
+position = Vector2(-298, 515)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9.5, -17.5)
+shape = SubResource("RectangleShape2D_kaxy7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-7, -40)
+scale = Vector2(1.5885, 1.5885)
+texture = ExtResource("1_h6eu7")

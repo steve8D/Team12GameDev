@@ -1,100 +1,19 @@
 [gd_scene load_steps=14 format=3 uid="uid://dk10laqm4ouhs"]
 
-[ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/world/earth/scene/prologue.tscn" id="1_0mlr8"]
-[ext_resource type="Script" path="res://scripts/scene/AnimationPlayer.gd" id="2_6crle"]
+[ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/scenes/gameplay/prologue_background.tscn" id="1_0mlr8"]
+[ext_resource type="PackedScene" uid="uid://dfsrcdaj78ouw" path="res://assets/scenes/sprites/corrupted_beast.tscn" id="2_b1q20"]
+[ext_resource type="Animation" uid="uid://cwg4nw0h1silo" path="res://assets/animationPlayer/prologue.res" id="2_tyr7s"]
+[ext_resource type="Animation" uid="uid://b5nfl5r406kg2" path="res://assets/animationPlayer/lumenberry collected.res" id="3_ky37k"]
 [ext_resource type="Script" path="res://scripts/gameplay/player_movement.gd" id="3_mms78"]
 [ext_resource type="SpriteFrames" uid="uid://mscqk7s1lcso" path="res://assets/sprites/player/farren.tres" id="4_6rubt"]
 [ext_resource type="Script" path="res://scripts/scene/TooltipLabel.gd" id="5_0jfxi"]
-[ext_resource type="PackedScene" uid="uid://civnl8y32q1la" path="res://resources/dialogue-box.tscn" id="5_hu444"]
+[ext_resource type="PackedScene" uid="uid://civnl8y32q1la" path="res://assets/scenes/gameplay/dialogue-box.tscn" id="5_hu444"]
 [ext_resource type="Script" path="res://scripts/gameplay/StaminaBar.gd" id="6_pyji4"]
-
-[sub_resource type="Animation" id="Animation_alkeq"]
-resource_name = "frame1"
-length = 4.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-757, 551), Vector2(-402, 546)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ToolTip1")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(4.5),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"showLabel"
-}]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Dialogue Box")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["It’s getting dark. Ma and Da are waiting for me to bring back those berries…(a beat, then a sigh)The gates will close soon – I should hurry."],
-"method": &"setText"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Dialogue Box:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.8),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Dialogue Box:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(4.5),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Player Hud:visible")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(4.5),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_3m7ot"]
-resource_name = "frame2"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epvd2"]
 _data = {
-"frame1": SubResource("Animation_alkeq"),
-"frame2": SubResource("Animation_3m7ot")
+"frame1": ExtResource("2_tyr7s"),
+"lumenberry collected": ExtResource("3_ky37k")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwcwx"]
@@ -115,10 +34,11 @@ position = Vector2(444, -2)
 libraries = {
 "": SubResource("AnimationLibrary_epvd2")
 }
-script = ExtResource("2_6crle")
+
+[node name="Corrupted Beast" parent="." instance=ExtResource("2_b1q20")]
 
 [node name="player" type="CharacterBody2D" parent="."]
-position = Vector2(-757, 551)
+position = Vector2(-185, 544)
 scale = Vector2(0.994953, 0.950902)
 collision_layer = 2
 collision_mask = 3
@@ -130,8 +50,9 @@ scale = Vector2(10.0652, 13.5797)
 shape = SubResource("RectangleShape2D_vwcwx")
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-position = Vector2(300, 0)
-limit_left = -100
+position = Vector2(-28.1418, -56.7882)
+limit_left = 0
+limit_right = 1700
 limit_bottom = 650
 editor_draw_limits = true
 
@@ -153,7 +74,7 @@ script = ExtResource("5_0jfxi")
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ToolTip2 Collider Area"]
-position = Vector2(6, 513)
+position = Vector2(16, 500)
 shape = SubResource("RectangleShape2D_31fx1")
 debug_color = Color(0.6, 0.388235, 0.960784, 0.419608)
 
@@ -166,10 +87,11 @@ offset_bottom = 573.0
 text = "Press W or S to move up or down"
 script = ExtResource("5_0jfxi")
 
-[node name="Dialogue Box" parent="." instance=ExtResource("5_hu444")]
+[node name="Dialogue UI" parent="." instance=ExtResource("5_hu444")]
 visible = false
 
 [node name="Player Hud" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="StaminaBar" type="ProgressBar" parent="Player Hud"]
 offset_left = 27.0
@@ -187,9 +109,10 @@ offset_left = 938.0
 offset_top = 22.0
 offset_right = 1209.0
 offset_bottom = 62.0
-text = "Find a Lumenberry"
+text = "Get outta there!
+QUEST TARGET: REACH THE VILLAGE!
+"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[connection signal="staminaValue" from="player" to="Player Hud/StaminaBar" method="updateStaminaUI"]
 [connection signal="body_entered" from="ToolTip2 Collider Area" to="ToolTip2 Collider Area/Tooltip2" method="_on_area_2d_body_entered"]

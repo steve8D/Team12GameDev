@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://ch7xo0dpl8e8x"]
 
 [ext_resource type="Texture2D" uid="uid://883cwu0p6det" path="res://assets/world/earth/deep forest.png" id="1_k5on3"]
-[ext_resource type="PackedScene" uid="uid://dtq1tu4f35rh3" path="res://assets/world/earth/scene/platforms.tscn" id="2_ap4mm"]
+[ext_resource type="PackedScene" uid="uid://dtq1tu4f35rh3" path="res://assets/scenes/gameplay/platforms.tscn" id="2_ap4mm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbm3u"]
 size = Vector2(34, 711)
@@ -10,7 +10,7 @@ size = Vector2(34, 711)
 size = Vector2(154, 23.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hvic"]
-size = Vector2(148, 55.125)
+size = Vector2(148, 103.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p2kjp"]
 size = Vector2(140.75, 18.125)
@@ -19,25 +19,25 @@ size = Vector2(140.75, 18.125)
 size = Vector2(136.75, 22.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_745ds"]
-size = Vector2(132, 31.75)
+size = Vector2(132, 94.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fwio7"]
 size = Vector2(119, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7a13"]
-size = Vector2(116, 35.75)
+size = Vector2(116, 96.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hv1lx"]
 size = Vector2(136, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_molxt"]
-size = Vector2(133, 45.75)
+size = Vector2(133, 95.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xdmhw"]
 size = Vector2(116.75, 22.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3od84"]
-size = Vector2(109, 44.25)
+size = Vector2(109, 97.5)
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 
@@ -72,7 +72,7 @@ position = Vector2(-292, 290.438)
 shape = SubResource("RectangleShape2D_4f1vt")
 
 [node name="CollisionShape2D10" parent="Platforms/platforms/Area2D" index="0"]
-position = Vector2(-292, 269.563)
+position = Vector2(-292, 245.563)
 shape = SubResource("RectangleShape2D_5hvic")
 
 [node name="platforms2" parent="Platforms" instance=ExtResource("2_ap4mm")]
@@ -91,6 +91,9 @@ position = Vector2(369, 27)
 [node name="CollisionShape2D12" parent="Platforms/platforms3" index="0"]
 position = Vector2(-295.5, 289.938)
 
+[node name="CollisionShape2D10" parent="Platforms/platforms3/Area2D" index="0"]
+position = Vector2(-292, 257.625)
+
 [node name="platforms4" parent="Platforms" instance=ExtResource("2_ap4mm")]
 position = Vector2(899, 97)
 
@@ -99,7 +102,7 @@ position = Vector2(-294.375, 289.938)
 shape = SubResource("RectangleShape2D_ycpqw")
 
 [node name="CollisionShape2D10" parent="Platforms/platforms4/Area2D" index="0"]
-position = Vector2(-295, 274.875)
+position = Vector2(-295, 243.375)
 shape = SubResource("RectangleShape2D_745ds")
 
 [node name="platforms5" parent="Platforms" instance=ExtResource("2_ap4mm")]
@@ -112,7 +115,7 @@ shape = SubResource("RectangleShape2D_fwio7")
 position = Vector2(640, -11)
 
 [node name="CollisionShape2D10" parent="Platforms/platforms5/Area2D" index="0"]
-position = Vector2(-281, 280.875)
+position = Vector2(-281, 250.375)
 shape = SubResource("RectangleShape2D_b7a13")
 
 [node name="platforms9" parent="Platforms" instance=ExtResource("2_ap4mm")]
@@ -126,7 +129,7 @@ shape = SubResource("RectangleShape2D_hv1lx")
 position = Vector2(640, -11)
 
 [node name="CollisionShape2D10" parent="Platforms/platforms9/Area2D" index="0"]
-position = Vector2(-272.5, 275.875)
+position = Vector2(-272.5, 250.875)
 shape = SubResource("RectangleShape2D_molxt")
 
 [node name="platforms10" parent="Platforms" instance=ExtResource("2_ap4mm")]
@@ -173,7 +176,7 @@ shape = SubResource("RectangleShape2D_xdmhw")
 position = Vector2(-243.625, 76)
 
 [node name="CollisionShape2D10" parent="Platforms/platforms13/Area2D" index="0"]
-position = Vector2(-295.5, 279.375)
+position = Vector2(-295.5, 252.75)
 shape = SubResource("RectangleShape2D_3od84")
 
 [editable path="Platforms/platforms"]

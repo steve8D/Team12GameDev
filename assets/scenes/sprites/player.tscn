@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://4ed0m4tyiqmr"]
+
+[ext_resource type="Script" path="res://scripts/gameplay/player_movement.gd" id="1_mb36a"]
+[ext_resource type="SpriteFrames" uid="uid://mscqk7s1lcso" path="res://assets/sprites/player/farren.tres" id="2_pxen8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vwcwx"]
+size = Vector2(4.59339, 0.855126)
+
+[node name="player" type="CharacterBody2D"]
+position = Vector2(646, 516)
+scale = Vector2(0.994953, 0.950902)
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_mb36a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(75.3805, 31.549)
+scale = Vector2(10.0652, 13.5797)
+shape = SubResource("RectangleShape2D_vwcwx")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(300, 0)
+limit_left = -100
+limit_bottom = 650
+editor_draw_limits = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(75.3804, -8.41309)
+scale = Vector2(2.50136, 2.50136)
+sprite_frames = ExtResource("2_pxen8")

@@ -1,12 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2httphahcrck"]
+[gd_scene load_steps=7 format=3 uid="uid://b2httphahcrck"]
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="2_sdcwa"]
 [ext_resource type="SpriteFrames" uid="uid://cj1i027jpplmp" path="res://sprites/farren.tres" id="3_qnjjd"]
 [ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/world/earth/scene/prologue.tscn" id="3_vs3vp"]
-[ext_resource type="Texture2D" uid="uid://c0vc5iyo2ac8b" path="res://assets/ui/base/v1_health_bar.png" id="4_cminn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vwcwx"]
 size = Vector2(4.59339, 0.855126)
+
+[sub_resource type="Environment" id="Environment_l4qs3"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 1
+glow_hdr_threshold = 0.4
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.6
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_et6x0"]
 
 [node name="Game" type="Node2D"]
 
@@ -33,7 +43,6 @@ texture_filter = 1
 position = Vector2(74.3753, 236.617)
 scale = Vector2(2.5, 2.5)
 sprite_frames = ExtResource("3_qnjjd")
-animation = &"jumping"
 
 [node name="GUI" type="MarginContainer" parent="."]
 offset_right = 40.0
@@ -52,7 +61,6 @@ layout_mode = 2
 [node name="Constants" type="HBoxContainer" parent="GUI/HBoxContainer"]
 layout_mode = 2
 
-[node name="V1HealthBar" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-319, 61)
-texture = ExtResource("4_cminn")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_l4qs3")
+camera_attributes = SubResource("CameraAttributesPractical_et6x0")

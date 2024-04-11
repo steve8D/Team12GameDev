@@ -1,20 +1,47 @@
 extends Control
 
-@onready var inventorySlots = {1: null, 2: null, 3: null, 4: null}		
+# The inventory Slots store the scripts of the item
+@onready var inventorySlots = {1: null, 2: null, 3: null, 4: null}
+var consuming_slot = 0		
+signal itemPickedUp(item)
+signal itemConsumed(item)
 
-func addItemToIventory(slot):
-	pass
-	# inventorySlots[slot] = item
+func _process(delta):
+	if Input.is_action_just_pressed("use_slot1"):
+		if inventorySlots[1] != null:
+			consuming_slot = 1
+			itemConsumed.emit(inventorySlots[1])
 
 func isInventoryFull():
 	for i in inventorySlots:
-		if i == null:
+		if inventorySlots[i] == null:
 			return i
-	return false
+	return 0
 
+func lookUpItemType(itemName):
+	var info
+	if itemName == "Mana Potion":
+		info = load("res://scripts/gameplay/ManaPotion.gd")
+	return info
+		
+func addItemToInventory(slot, item):
+	inventorySlots[slot] = item
+	var slotPath = "Slot%s/InventoryIcon" % slot
+	var icon = get_node(slotPath)
+	icon.visible = true
+	icon.texture = load(item.itemIconPath)
 
 func _on_item_item_picked_up(itemName):
 	var availableSlot = isInventoryFull()
-	if availableSlot != false:
-		pass
-		#addItemToIventory(availableSlot, item)
+	if availableSlot != 0:
+		# itemPickedUp.emit()
+		var item = lookUpItemType(itemName)
+		addItemToInventory(availableSlot, item)
+
+
+func _on_player_player_stamina_increased():
+	# Handle logic
+	inventorySlots[consuming_slot] = null
+	var slotPath = "Slot%s/InventoryIcon" %consuming_slot
+	var icon = get_node(slotPath)
+	icon.visible = false

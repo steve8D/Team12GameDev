@@ -1,7 +1,4 @@
 class_name ManaPotion
 
-var staminaRecoverAmount = 20
-
-
-func print_health():
-	print(staminaRecoverAmount)
+static var staminaRecoverAmount = 20
+static var itemIconPath = "res://assets/scenes/demos/inventory/Item__29.png"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dk10laqm4ouhs"]
+[gd_scene load_steps=14 format=3 uid="uid://dk10laqm4ouhs"]
 
 [ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/scenes/gameplay/prologue_background.tscn" id="1_0mlr8"]
 [ext_resource type="PackedScene" uid="uid://dfsrcdaj78ouw" path="res://assets/scenes/sprites/corrupted_beast.tscn" id="2_b1q20"]
@@ -8,7 +8,7 @@
 [ext_resource type="SpriteFrames" uid="uid://mscqk7s1lcso" path="res://assets/sprites/player/farren.tres" id="4_6rubt"]
 [ext_resource type="Script" path="res://scripts/scene/TooltipLabel.gd" id="5_0jfxi"]
 [ext_resource type="PackedScene" uid="uid://civnl8y32q1la" path="res://assets/scenes/gameplay/dialogue-box.tscn" id="5_hu444"]
-[ext_resource type="Script" path="res://scripts/gameplay/StaminaBar.gd" id="6_pyji4"]
+[ext_resource type="PackedScene" uid="uid://bdpbh55ppipts" path="res://assets/scenes/gameplay/stamina_bar.tscn" id="9_3ppvt"]
 [ext_resource type="PackedScene" uid="uid://bhe8p5ocxdjso" path="res://assets/scenes/gameplay/inventory.tscn" id="10_ogjhq"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epvd2"]
@@ -22,9 +22,6 @@ size = Vector2(4.59339, 0.855126)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31fx1"]
 size = Vector2(150.75, 143)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmg0r"]
-bg_color = Color(0.976471, 0.933333, 0.839216, 1)
 
 [node name="Game" type="Node2D"]
 position = Vector2(444, -2)
@@ -96,15 +93,7 @@ visible = false
 
 [node name="Player Hud" type="CanvasLayer" parent="."]
 
-[node name="StaminaBar" type="ProgressBar" parent="Player Hud"]
-offset_left = 27.0
-offset_top = 24.0
-offset_right = 294.0
-offset_bottom = 68.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_fmg0r")
-value = 20.0
-show_percentage = false
-script = ExtResource("6_pyji4")
+[node name="StaminaBar" parent="Player Hud" instance=ExtResource("9_3ppvt")]
 
 [node name="Quest" type="Label" parent="Player Hud"]
 visible = false
@@ -122,3 +111,4 @@ offset_left = -10.0
 offset_right = 30.0
 
 [connection signal="body_entered" from="ToolTip2 Collider Area" to="ToolTip2 Collider Area/Tooltip2" method="_on_area_2d_body_entered"]
+[connection signal="itemConsumed" from="Player Hud/Inventory" to="player" method="_on_inventory_hud_item_consumed"]

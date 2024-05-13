@@ -18,8 +18,8 @@ const PLAYER_MAX_STAMINA = 100
 var stamina = 100
 var sprinting = false
 var state = MOVE_SET.STANDING
-signal staminaValue(value)
-signal playerStaminaIncreased()
+signal staminaValue(value) # connects to StaminaBar HUD
+signal playerStaminaIncreased() # connects to Inventory HUD
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var _animation_player = $AnimatedSprite2D
 

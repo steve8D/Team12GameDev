@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckcjrr7wrj4hw"]
+
+[ext_resource type="Script" path="res://assets/scenes/demos/inventory/item.gd" id="1_dkxry"]
+[ext_resource type="Texture2D" uid="uid://dvjlwl6nr8k4b" path="res://assets/scenes/demos/inventory/Item__29.png" id="1_gmoum"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n8eci"]
+height = 48.1705
+
+[node name="Area2D" type="Area2D"]
+disable_mode = 1
+script = ExtResource("1_dkxry")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(29, 1)
+rotation = -0.56776
+shape = SubResource("CapsuleShape2D_n8eci")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+offset_left = 10.0
+offset_top = -17.0
+offset_right = 50.0
+offset_bottom = 23.0
+texture = ExtResource("1_gmoum")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

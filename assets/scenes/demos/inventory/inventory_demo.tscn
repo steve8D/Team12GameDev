@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2ef1t13ehhvo"]
+
+[ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/scenes/gameplay/prologue_background.tscn" id="1_m8d0f"]
+[ext_resource type="PackedScene" uid="uid://bhe8p5ocxdjso" path="res://assets/scenes/gameplay/inventory.tscn" id="2_q3mkv"]
+[ext_resource type="PackedScene" uid="uid://bdpbh55ppipts" path="res://assets/scenes/gameplay/stamina_bar.tscn" id="2_u485a"]
+[ext_resource type="PackedScene" uid="uid://bsrxicjxex5nc" path="res://assets/scenes/gameplay/player.tscn" id="3_ulbts"]
+[ext_resource type="PackedScene" uid="uid://ckcjrr7wrj4hw" path="res://assets/scenes/demos/inventory/example_item.tscn" id="4_6qhy1"]
+
+[node name="inventory" type="Node2D"]
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_m8d0f")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StaminaBar" parent="CanvasLayer" instance=ExtResource("2_u485a")]
+
+[node name="Inventory HUD" parent="CanvasLayer" instance=ExtResource("2_q3mkv")]
+offset_left = -1162.0
+offset_top = 7.0
+offset_right = -1162.0
+
+[node name="player" parent="." instance=ExtResource("3_ulbts")]
+position = Vector2(-1.00012, 541)
+collision_layer = 3
+
+[node name="Item" parent="." instance=ExtResource("4_6qhy1")]
+position = Vector2(205, 554)
+itemName = "Mana Potion"
+
+[node name="Item2" parent="." instance=ExtResource("4_6qhy1")]
+position = Vector2(145, 550)
+itemName = "Mana Potion"
+
+[node name="Item3" parent="." instance=ExtResource("4_6qhy1")]
+position = Vector2(258, 556)
+itemName = "Mana Potion"
+
+[node name="Item4" parent="." instance=ExtResource("4_6qhy1")]
+position = Vector2(306, 554)
+itemName = "Mana Potion"
+
+[node name="Item5" parent="." instance=ExtResource("4_6qhy1")]
+position = Vector2(358, 551)
+itemName = "Mana Potion"
+
+[connection signal="itemConsumed" from="CanvasLayer/Inventory HUD" to="player" method="_on_inventory_hud_item_consumed"]
+[connection signal="itemPickedUp" from="CanvasLayer/Inventory HUD" to="Item" method="_on_inventory_hud_item_picked_up"]
+[connection signal="itemPickedUp" from="CanvasLayer/Inventory HUD" to="Item2" method="_on_inventory_hud_item_picked_up"]
+[connection signal="itemPickedUp" from="CanvasLayer/Inventory HUD" to="Item3" method="_on_inventory_hud_item_picked_up"]
+[connection signal="itemPickedUp" from="CanvasLayer/Inventory HUD" to="Item4" method="_on_inventory_hud_item_picked_up"]
+[connection signal="itemPickedUp" from="CanvasLayer/Inventory HUD" to="Item5" method="_on_inventory_hud_item_picked_up"]
+[connection signal="playerStaminaIncreased" from="player" to="CanvasLayer/Inventory HUD" method="_on_player_player_stamina_increased"]
+[connection signal="staminaValue" from="player" to="CanvasLayer/StaminaBar" method="updateStaminaUI"]
+[connection signal="itemPickedUp" from="Item" to="CanvasLayer/Inventory HUD" method="_on_item_item_picked_up"]
+[connection signal="itemPickedUp" from="Item2" to="CanvasLayer/Inventory HUD" method="_on_item_item_picked_up"]
+[connection signal="itemPickedUp" from="Item3" to="CanvasLayer/Inventory HUD" method="_on_item_item_picked_up"]
+[connection signal="itemPickedUp" from="Item4" to="CanvasLayer/Inventory HUD" method="_on_item_item_picked_up"]
+[connection signal="itemPickedUp" from="Item5" to="CanvasLayer/Inventory HUD" method="_on_item_item_picked_up"]

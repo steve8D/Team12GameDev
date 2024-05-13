@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bu36u7heeikt1"]
 
 [ext_resource type="PackedScene" uid="uid://civnl8y32q1la" path="res://assets/scenes/gameplay/dialogue-box.tscn" id="1_ieblf"]
-[ext_resource type="Script" path="res://scenes/demos/dialogue/player.gd" id="2_32wso"]
+[ext_resource type="Script" path="res://assets/scenes/demos/dialogue/player.gd" id="2_32wso"]
 [ext_resource type="LabelSettings" uid="uid://b8jccqmt5m22p" path="res://assets/scenes/demos/dialogue/text-font-example.tres" id="4_70lgp"]
 [ext_resource type="LabelSettings" uid="uid://cn1kj6c4x1gfw" path="res://assets/scenes/demos/dialogue/text-font-example2.tres" id="5_vb8j4"]
 

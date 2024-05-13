@@ -8,7 +8,8 @@
 [ext_resource type="SpriteFrames" uid="uid://mscqk7s1lcso" path="res://assets/sprites/player/farren.tres" id="4_6rubt"]
 [ext_resource type="Script" path="res://scripts/scene/TooltipLabel.gd" id="5_0jfxi"]
 [ext_resource type="PackedScene" uid="uid://civnl8y32q1la" path="res://assets/scenes/gameplay/dialogue-box.tscn" id="5_hu444"]
-[ext_resource type="Script" path="res://scripts/gameplay/StaminaBar.gd" id="6_pyji4"]
+[ext_resource type="PackedScene" uid="uid://bdpbh55ppipts" path="res://assets/scenes/gameplay/stamina_bar.tscn" id="9_3ppvt"]
+[ext_resource type="PackedScene" uid="uid://bhe8p5ocxdjso" path="res://assets/scenes/gameplay/inventory.tscn" id="10_ogjhq"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epvd2"]
 _data = {
@@ -22,23 +23,22 @@ size = Vector2(4.59339, 0.855126)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31fx1"]
 size = Vector2(150.75, 143)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fmg0r"]
-bg_color = Color(0.976471, 0.933333, 0.839216, 1)
-
 [node name="Game" type="Node2D"]
 position = Vector2(444, -2)
 
 [node name="Background" parent="." instance=ExtResource("1_0mlr8")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "frame1"
 libraries = {
 "": SubResource("AnimationLibrary_epvd2")
 }
 
 [node name="Corrupted Beast" parent="." instance=ExtResource("2_b1q20")]
+position = Vector2(-602, 555)
 
 [node name="player" type="CharacterBody2D" parent="."]
-position = Vector2(-185, 544)
+position = Vector2(-402, 546)
 scale = Vector2(0.994953, 0.950902)
 collision_layer = 2
 collision_mask = 3
@@ -51,6 +51,7 @@ shape = SubResource("RectangleShape2D_vwcwx")
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(-28.1418, -56.7882)
+offset = Vector2(-2.35703e-11, 0)
 limit_left = 0
 limit_right = 1700
 limit_bottom = 650
@@ -91,28 +92,23 @@ script = ExtResource("5_0jfxi")
 visible = false
 
 [node name="Player Hud" type="CanvasLayer" parent="."]
-visible = false
 
-[node name="StaminaBar" type="ProgressBar" parent="Player Hud"]
-offset_left = 27.0
-offset_top = 24.0
-offset_right = 294.0
-offset_bottom = 68.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_fmg0r")
-value = 20.0
-show_percentage = false
-script = ExtResource("6_pyji4")
+[node name="StaminaBar" parent="Player Hud" instance=ExtResource("9_3ppvt")]
 
 [node name="Quest" type="Label" parent="Player Hud"]
 visible = false
-offset_left = 938.0
-offset_top = 22.0
-offset_right = 1209.0
-offset_bottom = 62.0
+offset_left = 27.0
+offset_top = 95.0
+offset_right = 309.0
+offset_bottom = 147.0
 text = "Get outta there!
 QUEST TARGET: REACH THE VILLAGE!
 "
-horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="Inventory" parent="Player Hud" instance=ExtResource("10_ogjhq")]
+offset_left = -10.0
+offset_right = 30.0
+
 [connection signal="body_entered" from="ToolTip2 Collider Area" to="ToolTip2 Collider Area/Tooltip2" method="_on_area_2d_body_entered"]
+[connection signal="itemConsumed" from="Player Hud/Inventory" to="player" method="_on_inventory_hud_item_consumed"]

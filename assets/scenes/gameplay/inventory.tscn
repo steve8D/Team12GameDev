@@ -1,0 +1,120 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhe8p5ocxdjso"]
+
+[ext_resource type="Script" path="res://scripts/gameplay/inventory.gd" id="1_hpeuj"]
+[ext_resource type="Texture2D" uid="uid://dvjlwl6nr8k4b" path="res://assets/scenes/demos/inventory/Item__29.png" id="2_h57y1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xw70v"]
+corner_radius_top_left = 40
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02dyx"]
+bg_color = Color(1, 0.231373, 0.686275, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1160.0
+offset_top = 1.0
+offset_right = -1160.0
+offset_bottom = 1.0
+grow_horizontal = 0
+script = ExtResource("1_hpeuj")
+
+[node name="Slot1" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 61.0
+offset_right = 1052.0
+offset_bottom = 114.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xw70v")
+
+[node name="InventoryIcon" type="TextureRect" parent="Slot1"]
+visible = false
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 46.0
+offset_bottom = 45.0
+texture = ExtResource("2_h57y1")
+
+[node name="Slot2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1102.0
+offset_top = 13.0
+offset_right = 1154.0
+offset_bottom = 66.0
+rotation = 1.5708
+theme_override_styles/panel = SubResource("StyleBoxFlat_xw70v")
+
+[node name="InventoryIcon" type="TextureRect" parent="Slot2"]
+visible = false
+layout_mode = 0
+offset_left = 6.00018
+offset_top = 45.0
+offset_right = 46.0002
+offset_bottom = 85.0
+rotation = 4.71239
+texture = ExtResource("2_h57y1")
+
+[node name="Slot3" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1151.0
+offset_top = 114.0
+offset_right = 1203.0
+offset_bottom = 167.0
+rotation = -3.14159
+theme_override_styles/panel = SubResource("StyleBoxFlat_xw70v")
+
+[node name="InventoryIcon" type="TextureRect" parent="Slot3"]
+visible = false
+layout_mode = 0
+offset_left = 45.0
+offset_top = 45.9999
+offset_right = 82.0
+offset_bottom = 82.9999
+rotation = 3.14159
+texture = ExtResource("2_h57y1")
+
+[node name="Slot4" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1049.0
+offset_top = 164.0
+offset_right = 1101.0
+offset_bottom = 217.0
+rotation = -1.5708
+theme_override_styles/panel = SubResource("StyleBoxFlat_xw70v")
+
+[node name="InventoryIcon" type="TextureRect" parent="Slot4"]
+visible = false
+layout_mode = 0
+offset_left = 48.0
+offset_top = 6.00012
+offset_right = 88.0
+offset_bottom = 46.0001
+rotation = -4.71239
+texture = ExtResource("2_h57y1")
+
+[node name="CenterSlot" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1048.0
+offset_top = 59.0
+offset_right = 1103.0
+offset_bottom = 115.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_02dyx")
+
+[node name="TextureRect4" type="TextureRect" parent="CenterSlot"]
+visible = false
+layout_mode = 0
+offset_left = -1048.0
+offset_top = -59.0
+offset_right = -1008.0
+offset_bottom = -19.0

@@ -12,12 +12,14 @@ const SPRINT_SPEED = 500.0
 const RUNNING_STAMINA_COST = 50
 const STAMINA_RECOVERY_RATE = 20
 const JUMP_STAMINA_COST = 20
+const PLAYER_MAX_STAMINA = 100
 
 # File variables
 var stamina = 100
 var sprinting = false
 var state = MOVE_SET.STANDING
-signal staminaValue(value)
+signal staminaValue(value) # connects to StaminaBar HUD
+signal playerStaminaIncreased() # connects to Inventory HUD
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var _animation_player = $AnimatedSprite2D
 
@@ -95,3 +97,8 @@ func process_animation():
 		_animation_player.play("jumping")
 	else:
 		_animation_player.play("default")
+
+func _on_inventory_hud_item_consumed(item):
+	if stamina + item.staminaRecoverAmount <= PLAYER_MAX_STAMINA:
+		playerStaminaIncreased.emit()
+		stamina += item.staminaRecoverAmount

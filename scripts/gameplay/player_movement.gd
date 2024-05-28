@@ -14,7 +14,7 @@ const STAMINA_RECOVERY_RATE = 20
 const JUMP_STAMINA_COST = 20
 const PLAYER_MAX_STAMINA = 100
 
-# File variables
+# Player variables
 var stamina = 100
 var sprinting = false
 var state = MOVE_SET.STANDING
@@ -23,15 +23,20 @@ signal playerStaminaIncreased() # connects to Inventory HUD
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var _animation_player = $AnimatedSprite2D
 
+# Game variables
+@onready var animationPlayer = get_node("../AnimationPlayer")
+
 func _physics_process(delta):
-	var direction = Input.get_vector("move_left", "move_right", "jump_up", "jump_down")
-	handle_lateral_movement(direction, delta)
-	handle_vertical_movement(direction, delta)
-	check_for_sprint()	
-	handle_sprint(direction, delta)
-	process_animation()
-	move_and_slide()
-	
+	if not animationPlayer.is_playing():
+		var direction = Input.get_vector("move_left", "move_right", "jump_up", "jump_down")
+		handle_lateral_movement(direction, delta)
+		handle_vertical_movement(direction, delta)
+		check_for_sprint()	
+		handle_sprint(direction, delta)
+		process_animation()
+		move_and_slide()
+	elif not animationPlayer:
+		print("attach animation player in the scene")
 # Helper functions
 func check_for_sprint():
 	if Input.is_action_just_pressed("sprint") and is_on_floor() and stamina >= 0:

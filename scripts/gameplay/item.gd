@@ -1,4 +1,4 @@
-extends Area2D
+class_name item extends Area2D
 
 signal itemPickedUp(itemName)
 
@@ -16,3 +16,7 @@ func _on_body_entered(body):
 
 func _on_body_exited(body):
 	itemIsInRange = false
+
+
+func _on_inventory_hud_item_picked_up(item):
+	pass # Replace with function body.

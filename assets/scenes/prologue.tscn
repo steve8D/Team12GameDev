@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dk10laqm4ouhs"]
+[gd_scene load_steps=16 format=3 uid="uid://dk10laqm4ouhs"]
 
 [ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/scenes/gameplay/prologue_background.tscn" id="1_0mlr8"]
 [ext_resource type="PackedScene" uid="uid://dfsrcdaj78ouw" path="res://assets/scenes/sprites/corrupted_beast.tscn" id="2_b1q20"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://civnl8y32q1la" path="res://assets/scenes/gameplay/dialogue-box.tscn" id="5_hu444"]
 [ext_resource type="PackedScene" uid="uid://bdpbh55ppipts" path="res://assets/scenes/gameplay/stamina_bar.tscn" id="9_3ppvt"]
 [ext_resource type="PackedScene" uid="uid://bhe8p5ocxdjso" path="res://assets/scenes/gameplay/inventory.tscn" id="10_ogjhq"]
+[ext_resource type="PackedScene" uid="uid://ckcjrr7wrj4hw" path="res://assets/scenes/demos/inventory/example_item.tscn" id="11_j74lt"]
+[ext_resource type="Script" path="res://scripts/scene/item_cutscene.gd" id="12_tx70s"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epvd2"]
 _data = {
@@ -35,12 +37,12 @@ libraries = {
 }
 
 [node name="Corrupted Beast" parent="." instance=ExtResource("2_b1q20")]
-position = Vector2(-602, 555)
+position = Vector2(-683, 313)
 
 [node name="player" type="CharacterBody2D" parent="."]
-position = Vector2(-402, 546)
+position = Vector2(-757, 551)
 scale = Vector2(0.994953, 0.950902)
-collision_layer = 2
+collision_layer = 3
 collision_mask = 3
 script = ExtResource("3_mms78")
 
@@ -51,7 +53,6 @@ shape = SubResource("RectangleShape2D_vwcwx")
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(-28.1418, -56.7882)
-offset = Vector2(-2.35703e-11, 0)
 limit_left = 0
 limit_right = 1700
 limit_bottom = 650
@@ -92,6 +93,7 @@ script = ExtResource("5_0jfxi")
 visible = false
 
 [node name="Player Hud" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="StaminaBar" parent="Player Hud" instance=ExtResource("9_3ppvt")]
 
@@ -106,9 +108,20 @@ QUEST TARGET: REACH THE VILLAGE!
 "
 vertical_alignment = 1
 
-[node name="Inventory" parent="Player Hud" instance=ExtResource("10_ogjhq")]
-offset_left = -10.0
-offset_right = 30.0
+[node name="Inventory HUD" parent="Player Hud" instance=ExtResource("10_ogjhq")]
+offset_left = -1162.0
+offset_top = 7.0
+offset_right = -1162.0
 
+[node name="Item" parent="." instance=ExtResource("11_j74lt")]
+position = Vector2(416, 416)
+script = ExtResource("12_tx70s")
+animationToPlay = "lumenberry collected"
+itemName = "Mana Potion"
+
+[connection signal="playerStaminaIncreased" from="player" to="Player Hud/Inventory HUD" method="_on_player_player_stamina_increased"]
+[connection signal="staminaValue" from="player" to="Player Hud/StaminaBar" method="updateStaminaUI"]
 [connection signal="body_entered" from="ToolTip2 Collider Area" to="ToolTip2 Collider Area/Tooltip2" method="_on_area_2d_body_entered"]
-[connection signal="itemConsumed" from="Player Hud/Inventory" to="player" method="_on_inventory_hud_item_consumed"]
+[connection signal="itemConsumed" from="Player Hud/Inventory HUD" to="player" method="_on_inventory_hud_item_consumed"]
+[connection signal="itemPickedUp" from="Player Hud/Inventory HUD" to="Item" method="_on_inventory_hud_item_picked_up"]
+[connection signal="itemPickedUp" from="Item" to="Player Hud/Inventory HUD" method="_on_item_item_picked_up"]

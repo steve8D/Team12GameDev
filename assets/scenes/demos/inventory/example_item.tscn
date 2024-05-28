@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ckcjrr7wrj4hw"]
 
-[ext_resource type="Script" path="res://assets/scenes/demos/inventory/item.gd" id="1_dkxry"]
+[ext_resource type="Script" path="res://scripts/gameplay/item.gd" id="1_3y1aa"]
 [ext_resource type="Texture2D" uid="uid://dvjlwl6nr8k4b" path="res://assets/scenes/demos/inventory/Item__29.png" id="1_gmoum"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n8eci"]
@@ -8,7 +8,7 @@ height = 48.1705
 
 [node name="Area2D" type="Area2D"]
 disable_mode = 1
-script = ExtResource("1_dkxry")
+script = ExtResource("1_3y1aa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(29, 1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dk10laqm4ouhs"]
+[gd_scene load_steps=21 format=3 uid="uid://dk10laqm4ouhs"]
 
 [ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/scenes/gameplay/prologue_background.tscn" id="1_0mlr8"]
 [ext_resource type="PackedScene" uid="uid://dfsrcdaj78ouw" path="res://assets/scenes/sprites/corrupted_beast.tscn" id="2_b1q20"]
@@ -8,13 +8,33 @@
 [ext_resource type="SpriteFrames" uid="uid://mscqk7s1lcso" path="res://assets/sprites/player/farren.tres" id="4_6rubt"]
 [ext_resource type="Script" path="res://scripts/scene/TooltipLabel.gd" id="5_0jfxi"]
 [ext_resource type="PackedScene" uid="uid://civnl8y32q1la" path="res://assets/scenes/gameplay/dialogue-box.tscn" id="5_hu444"]
-[ext_resource type="PackedScene" uid="uid://bdpbh55ppipts" path="res://assets/scenes/gameplay/stamina_bar.tscn" id="9_3ppvt"]
+[ext_resource type="Script" path="res://scripts/gameplay/StaminaBar.gd" id="9_dennq"]
+[ext_resource type="Texture2D" uid="uid://dga3hkjm4m17y" path="res://assets/ui/base/v1_stamina_bar.png" id="9_jxspn"]
+[ext_resource type="Texture2D" uid="uid://c0vc5iyo2ac8b" path="res://assets/ui/base/v1_health_bar.png" id="9_yg5a2"]
+[ext_resource type="Texture2D" uid="uid://bm4k27fkjav1o" path="res://assets/ui/base/v1_stamina_bar_fill.png" id="10_n1dgu"]
 [ext_resource type="PackedScene" uid="uid://bhe8p5ocxdjso" path="res://assets/scenes/gameplay/inventory.tscn" id="10_ogjhq"]
+[ext_resource type="Texture2D" uid="uid://bwedt3m1hxoxo" path="res://assets/ui/base/v1_health_bar_fill.png" id="10_qiub6"]
 [ext_resource type="PackedScene" uid="uid://ckcjrr7wrj4hw" path="res://assets/scenes/demos/inventory/example_item.tscn" id="11_j74lt"]
 [ext_resource type="Script" path="res://scripts/scene/item_cutscene.gd" id="12_tx70s"]
 
+[sub_resource type="Animation" id="Animation_t28re"]
+resource_name = "enemy chase test"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Corrupted Beast:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-298, 515)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epvd2"]
 _data = {
+"enemy chase test": SubResource("Animation_t28re"),
 "frame1": ExtResource("2_tyr7s"),
 "lumenberry collected": ExtResource("3_ky37k")
 }
@@ -31,16 +51,16 @@ position = Vector2(444, -2)
 [node name="Background" parent="." instance=ExtResource("1_0mlr8")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "frame1"
+autoplay = "enemy chase test"
 libraries = {
 "": SubResource("AnimationLibrary_epvd2")
 }
 
 [node name="Corrupted Beast" parent="." instance=ExtResource("2_b1q20")]
-position = Vector2(-683, 313)
+position = Vector2(-640, 471)
 
 [node name="player" type="CharacterBody2D" parent="."]
-position = Vector2(-757, 551)
+position = Vector2(-684, 634)
 scale = Vector2(0.994953, 0.950902)
 collision_layer = 3
 collision_mask = 3
@@ -93,19 +113,41 @@ script = ExtResource("5_0jfxi")
 visible = false
 
 [node name="Player Hud" type="CanvasLayer" parent="."]
-visible = false
 
-[node name="StaminaBar" parent="Player Hud" instance=ExtResource("9_3ppvt")]
+[node name="HealthBar" type="TextureProgressBar" parent="Player Hud"]
+offset_left = 31.0
+offset_top = 6.0
+offset_right = 272.0
+offset_bottom = 97.0
+scale = Vector2(0.8, 0.8)
+max_value = 99.0
+value = 99.0
+texture_under = ExtResource("9_yg5a2")
+texture_progress = ExtResource("10_qiub6")
+texture_progress_offset = Vector2(69.79, 35.24)
+
+[node name="StaminaBar" type="TextureProgressBar" parent="Player Hud"]
+offset_left = 24.0
+offset_top = 86.0
+offset_right = 182.0
+offset_bottom = 140.0
+scale = Vector2(1.3, 1.3)
+value = 100.0
+texture_under = ExtResource("9_jxspn")
+texture_progress = ExtResource("10_n1dgu")
+texture_progress_offset = Vector2(11, 11)
+script = ExtResource("9_dennq")
 
 [node name="Quest" type="Label" parent="Player Hud"]
 visible = false
-offset_left = 27.0
-offset_top = 95.0
-offset_right = 309.0
-offset_bottom = 147.0
+offset_left = 694.0
+offset_top = 17.0
+offset_right = 976.0
+offset_bottom = 69.0
 text = "Get outta there!
-QUEST TARGET: REACH THE VILLAGE!
+REACH THE VILLAGE!
 "
+horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Inventory HUD" parent="Player Hud" instance=ExtResource("10_ogjhq")]
@@ -114,11 +156,12 @@ offset_top = 7.0
 offset_right = -1162.0
 
 [node name="Item" parent="." instance=ExtResource("11_j74lt")]
-position = Vector2(416, 416)
+position = Vector2(689, 536)
 script = ExtResource("12_tx70s")
 animationToPlay = "lumenberry collected"
 itemName = "Mana Potion"
 
+[connection signal="endGame" from="Corrupted Beast" to="player" method="_on_corrupted_beast_end_game"]
 [connection signal="playerStaminaIncreased" from="player" to="Player Hud/Inventory HUD" method="_on_player_player_stamina_increased"]
 [connection signal="staminaValue" from="player" to="Player Hud/StaminaBar" method="updateStaminaUI"]
 [connection signal="body_entered" from="ToolTip2 Collider Area" to="ToolTip2 Collider Area/Tooltip2" method="_on_area_2d_body_entered"]

@@ -107,3 +107,8 @@ func _on_inventory_hud_item_consumed(item):
 	if stamina + item.staminaRecoverAmount <= PLAYER_MAX_STAMINA:
 		playerStaminaIncreased.emit()
 		stamina += item.staminaRecoverAmount
+
+func _on_corrupted_beast_end_game():
+	# stop taking user input and current animation
+	set_physics_process(false)
+	_animation_player.stop()

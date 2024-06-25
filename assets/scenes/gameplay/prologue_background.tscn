@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ch7xo0dpl8e8x"]
+[gd_scene load_steps=17 format=3 uid="uid://ch7xo0dpl8e8x"]
 
 [ext_resource type="Texture2D" uid="uid://883cwu0p6det" path="res://assets/world/earth/deep forest.png" id="1_k5on3"]
 [ext_resource type="PackedScene" uid="uid://dtq1tu4f35rh3" path="res://assets/scenes/gameplay/platforms.tscn" id="2_ap4mm"]
@@ -14,6 +14,9 @@ size = Vector2(154, 23.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5hvic"]
 size = Vector2(148, 103.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjeu7"]
+size = Vector2(141, 23.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p2kjp"]
 size = Vector2(140.75, 18.125)
@@ -37,7 +40,7 @@ size = Vector2(136, 20)
 size = Vector2(133, 95.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xdmhw"]
-size = Vector2(116.75, 22.125)
+size = Vector2(132.875, 22.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3od84"]
 size = Vector2(109, 97.5)
@@ -58,7 +61,7 @@ scale = Vector2(1.6, 1.6)
 texture = ExtResource("1_k5on3")
 
 [node name="DeepForest2" type="Sprite2D" parent="ParallaxLayer"]
-position = Vector2(2071, 155)
+position = Vector2(2029, 155)
 scale = Vector2(1.6, 1.6)
 texture = SubResource("CompressedTexture2D_3nkch")
 flip_h = true
@@ -67,15 +70,15 @@ flip_h = true
 disable_mode = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="World Borders"]
-position = Vector2(-43, 3)
-polygon = PackedVector2Array(6, 588, 229, 581, 1737, 547, 1743, 655, -2, 660)
+position = Vector2(-43, -1)
+polygon = PackedVector2Array(6, 588, 229, 581, 1501, 561, 2738, 568, 3444, 580, 3444, 655, -2, 660)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World Borders"]
 position = Vector2(-21, 314)
 shape = SubResource("RectangleShape2D_sbm3u")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="World Borders"]
-position = Vector2(1716, 305)
+position = Vector2(3414, 329)
 shape = SubResource("RectangleShape2D_sbm3u")
 
 [node name="Platforms" type="Node" parent="."]
@@ -87,6 +90,17 @@ position = Vector2(-292, 290.438)
 shape = SubResource("RectangleShape2D_4f1vt")
 
 [node name="CollisionShape2D10" parent="Platforms/platforms/Area2D" index="0"]
+position = Vector2(-292, 245.563)
+shape = SubResource("RectangleShape2D_5hvic")
+
+[node name="platforms6" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(2375, 155)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms6" index="0"]
+position = Vector2(-297.5, 297)
+shape = SubResource("RectangleShape2D_gjeu7")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms6/Area2D" index="0"]
 position = Vector2(-292, 245.563)
 shape = SubResource("RectangleShape2D_5hvic")
 
@@ -147,6 +161,20 @@ position = Vector2(640, -11)
 position = Vector2(-272.5, 250.875)
 shape = SubResource("RectangleShape2D_molxt")
 
+[node name="platforms22" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(2798, 169)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms22" index="0"]
+position = Vector2(367, 286)
+shape = SubResource("RectangleShape2D_hv1lx")
+
+[node name="Area2D" parent="Platforms/platforms22" index="1"]
+position = Vector2(640, -11)
+
+[node name="CollisionShape2D10" parent="Platforms/platforms22/Area2D" index="0"]
+position = Vector2(-272.5, 250.875)
+shape = SubResource("RectangleShape2D_molxt")
+
 [node name="platforms10" parent="Platforms" instance=ExtResource("2_ap4mm")]
 position = Vector2(1875, -45)
 
@@ -158,6 +186,28 @@ shape = SubResource("RectangleShape2D_xdmhw")
 position = Vector2(-295.5, 273.875)
 shape = SubResource("RectangleShape2D_3od84")
 
+[node name="platforms14" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(2116, -52)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms14" index="0"]
+position = Vector2(-294.375, 287)
+shape = SubResource("RectangleShape2D_xdmhw")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms14/Area2D" index="0"]
+position = Vector2(-295.5, 273.875)
+shape = SubResource("RectangleShape2D_3od84")
+
+[node name="platforms15" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(2388, -51)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms15" index="0"]
+position = Vector2(-294.375, 287)
+shape = SubResource("RectangleShape2D_xdmhw")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms15/Area2D" index="0"]
+position = Vector2(-295.5, 273.875)
+shape = SubResource("RectangleShape2D_3od84")
+
 [node name="platforms11" parent="Platforms" instance=ExtResource("2_ap4mm")]
 position = Vector2(1778, 79)
 
@@ -166,6 +216,72 @@ position = Vector2(-294.375, 287)
 shape = SubResource("RectangleShape2D_xdmhw")
 
 [node name="CollisionShape2D10" parent="Platforms/platforms11/Area2D" index="0"]
+position = Vector2(-295.5, 274.125)
+shape = SubResource("RectangleShape2D_3od84")
+
+[node name="platforms16" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(2209, 77)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms16" index="0"]
+position = Vector2(-294.375, 287)
+shape = SubResource("RectangleShape2D_xdmhw")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms16/Area2D" index="0"]
+position = Vector2(-295.5, 274.125)
+shape = SubResource("RectangleShape2D_3od84")
+
+[node name="platforms17" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(2630, 24)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms17" index="0"]
+position = Vector2(-294.375, 287)
+shape = SubResource("RectangleShape2D_xdmhw")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms17/Area2D" index="0"]
+position = Vector2(-295.5, 274.125)
+shape = SubResource("RectangleShape2D_3od84")
+
+[node name="platforms18" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(2809, 164)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms18" index="0"]
+position = Vector2(-294.375, 287)
+shape = SubResource("RectangleShape2D_xdmhw")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms18/Area2D" index="0"]
+position = Vector2(-295.5, 274.125)
+shape = SubResource("RectangleShape2D_3od84")
+
+[node name="platforms19" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(3615, 24)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms19" index="0"]
+position = Vector2(-294.375, 287)
+shape = SubResource("RectangleShape2D_xdmhw")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms19/Area2D" index="0"]
+position = Vector2(-295.5, 274.125)
+shape = SubResource("RectangleShape2D_3od84")
+
+[node name="platforms21" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(3081, 97)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms21" index="0"]
+position = Vector2(-288.438, 288)
+shape = SubResource("RectangleShape2D_xdmhw")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms21/Area2D" index="0"]
+position = Vector2(-295.5, 274.125)
+shape = SubResource("RectangleShape2D_3od84")
+
+[node name="platforms23" parent="Platforms" instance=ExtResource("2_ap4mm")]
+position = Vector2(3275, 3)
+
+[node name="CollisionShape2D12" parent="Platforms/platforms23" index="0"]
+position = Vector2(-288.438, 288)
+shape = SubResource("RectangleShape2D_xdmhw")
+
+[node name="CollisionShape2D10" parent="Platforms/platforms23/Area2D" index="0"]
 position = Vector2(-295.5, 274.125)
 shape = SubResource("RectangleShape2D_3od84")
 
@@ -195,12 +311,22 @@ position = Vector2(-295.5, 252.75)
 shape = SubResource("RectangleShape2D_3od84")
 
 [editable path="Platforms/platforms"]
+[editable path="Platforms/platforms6"]
 [editable path="Platforms/platforms2"]
 [editable path="Platforms/platforms3"]
 [editable path="Platforms/platforms4"]
 [editable path="Platforms/platforms5"]
 [editable path="Platforms/platforms9"]
+[editable path="Platforms/platforms22"]
 [editable path="Platforms/platforms10"]
+[editable path="Platforms/platforms14"]
+[editable path="Platforms/platforms15"]
 [editable path="Platforms/platforms11"]
+[editable path="Platforms/platforms16"]
+[editable path="Platforms/platforms17"]
+[editable path="Platforms/platforms18"]
+[editable path="Platforms/platforms19"]
+[editable path="Platforms/platforms21"]
+[editable path="Platforms/platforms23"]
 [editable path="Platforms/platforms12"]
 [editable path="Platforms/platforms13"]

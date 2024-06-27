@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://csd0ycp7eueyj"]
+
+[ext_resource type="Texture2D" uid="uid://lbghbnudhtqf" path="res://assets/sprites/village/ma.png" id="1_fq50s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1qjq"]
+size = Vector2(20, 8)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_fq50s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 44)
+shape = SubResource("RectangleShape2D_p1qjq")

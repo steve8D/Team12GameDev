@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dk10laqm4ouhs"]
+[gd_scene load_steps=26 format=3 uid="uid://dk10laqm4ouhs"]
 
 [ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/scenes/gameplay/prologue_background.tscn" id="1_0mlr8"]
 [ext_resource type="PackedScene" uid="uid://dfsrcdaj78ouw" path="res://assets/scenes/sprites/corrupted_beast.tscn" id="2_b1q20"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://scripts/gameplay/AnimationPlayer.gd" id="4_ctrmx"]
 [ext_resource type="Script" path="res://scripts/scene/TooltipLabel.gd" id="5_0jfxi"]
 [ext_resource type="PackedScene" uid="uid://civnl8y32q1la" path="res://assets/scenes/gameplay/dialogue-box.tscn" id="5_hu444"]
+[ext_resource type="AudioStream" uid="uid://bkvwaap51oq30" path="res://audio/Footsteps_1.mp3" id="8_r57cp"]
 [ext_resource type="Script" path="res://scripts/gameplay/StaminaBar.gd" id="9_dennq"]
 [ext_resource type="Texture2D" uid="uid://dga3hkjm4m17y" path="res://assets/ui/base/v1_stamina_bar.png" id="9_jxspn"]
 [ext_resource type="Texture2D" uid="uid://c0vc5iyo2ac8b" path="res://assets/ui/base/v1_health_bar.png" id="9_yg5a2"]
@@ -17,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bwedt3m1hxoxo" path="res://assets/ui/base/v1_health_bar_fill.png" id="10_qiub6"]
 [ext_resource type="PackedScene" uid="uid://ckcjrr7wrj4hw" path="res://assets/scenes/demos/inventory/example_item.tscn" id="11_j74lt"]
 [ext_resource type="Script" path="res://scripts/scene/item_cutscene.gd" id="12_tx70s"]
+[ext_resource type="AudioStream" uid="uid://ugsvjppowt6i" path="res://audio/Creepy_Forest_Sounds_Full.mp3" id="18_3d2qo"]
 
 [sub_resource type="Animation" id="Animation_t28re"]
 resource_name = "enemy chase test"
@@ -115,7 +117,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epvd2"]
 _data = {
-"enemy chase test": SubResource("Animation_t28re"),
+"enemy chase checkpoint": SubResource("Animation_t28re"),
 "fade_to_black": SubResource("Animation_wvpcs"),
 "fade_to_normal": SubResource("Animation_mslam"),
 "intro": ExtResource("2_tyr7s"),
@@ -132,26 +134,26 @@ size = Vector2(150.75, 143)
 position = Vector2(444, -2)
 
 [node name="Transition" type="ColorRect" parent="."]
+visible = false
 z_index = 1
 offset_left = -443.0
 offset_right = 2997.0
 offset_bottom = 666.0
-color = Color(0, 0, 0, 0)
+color = Color(0, 0, 0, 1)
 
 [node name="Background" parent="." instance=ExtResource("1_0mlr8")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "intro"
 libraries = {
 "": SubResource("AnimationLibrary_epvd2")
 }
 script = ExtResource("4_ctrmx")
 
 [node name="Corrupted Beast" parent="." instance=ExtResource("2_b1q20")]
-speed = 300
+position = Vector2(-1000, 515)
 
 [node name="player" type="CharacterBody2D" parent="."]
-position = Vector2(-757, 551)
+position = Vector2(-416, 535)
 scale = Vector2(0.994953, 0.950902)
 collision_layer = 3
 collision_mask = 3
@@ -172,6 +174,10 @@ editor_draw_limits = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player"]
 scale = Vector2(2.50136, 2.50136)
 sprite_frames = ExtResource("4_6rubt")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="player"]
+stream = ExtResource("8_r57cp")
+volume_db = 6.783
 
 [node name="ToolTip1" type="Label" parent="."]
 visible = false
@@ -200,9 +206,9 @@ text = "Press W or S to move up or down"
 script = ExtResource("5_0jfxi")
 
 [node name="Dialogue UI" parent="." instance=ExtResource("5_hu444")]
+visible = false
 
 [node name="Player Hud" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="HealthBar" type="TextureProgressBar" parent="Player Hud"]
 offset_left = 31.0
@@ -250,6 +256,9 @@ position = Vector2(689, 536)
 script = ExtResource("12_tx70s")
 animationToPlay = "lumenberry collected"
 itemName = "Mana Potion"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_3d2qo")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
 [connection signal="endGame" from="Corrupted Beast" to="AnimationPlayer" method="_on_corrupted_beast_end_game"]

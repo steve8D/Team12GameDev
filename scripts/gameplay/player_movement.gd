@@ -22,6 +22,7 @@ signal staminaValue(value) # connects to StaminaBar HUD
 signal playerStaminaIncreased() # connects to Inventory HUD
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var _animation_player = $AnimatedSprite2D
+@onready var _audio_player = $AudioStreamPlayer
 
 # Game variables
 @onready var animationPlayer = get_node("../AnimationPlayer")
@@ -93,14 +94,20 @@ func process_animation():
 	
 	if state == MOVE_SET.SPRINTING:
 		_animation_player.play("running")
+		if not _audio_player.playing:
+			_audio_player.play()
 		_animation_player.speed_scale = 1.5
 	elif state == MOVE_SET.WALKING:
 		_animation_player.play("running")
+		if not _audio_player.playing:
+			_audio_player.play()
 		_animation_player.speed_scale = 1.0
 	elif state == MOVE_SET.JUMPING:
 		# play animation once
 		_animation_player.play("jumping")
 	else:
+		if _audio_player.playing:
+			_audio_player.stop()
 		_animation_player.play("default")
 
 func _on_inventory_hud_item_consumed(item):

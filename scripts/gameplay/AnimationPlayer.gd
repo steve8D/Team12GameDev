@@ -5,6 +5,6 @@ func _on_corrupted_beast_end_game():
 
 func _on_animation_finished(anim_name):
 	if anim_name == "fade_to_black":
-		play("enemy chase test")
-	elif anim_name == "enemy chase test":
+		play("enemy chase checkpoint")
+	elif anim_name == "enemy chase checkpoint":
 		play("fade_to_normal")

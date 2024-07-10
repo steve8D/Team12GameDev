@@ -1,6 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://dk10laqm4ouhs"]
 
 [ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/scenes/gameplay/prologue_background.tscn" id="1_0mlr8"]
+[ext_resource type="Animation" uid="uid://deldgp207ppad" path="res://assets/animationPlayer/enemy chase checkpoint.res" id="2_4cn25"]
 [ext_resource type="PackedScene" uid="uid://dfsrcdaj78ouw" path="res://assets/scenes/sprites/corrupted_beast.tscn" id="2_b1q20"]
 [ext_resource type="Animation" uid="uid://cwg4nw0h1silo" path="res://assets/animationPlayer/prologue.res" id="2_tyr7s"]
 [ext_resource type="Animation" uid="uid://b5nfl5r406kg2" path="res://assets/animationPlayer/lumenberry collected.res" id="3_ky37k"]
@@ -18,46 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://bwedt3m1hxoxo" path="res://assets/ui/base/v1_health_bar_fill.png" id="10_qiub6"]
 [ext_resource type="PackedScene" uid="uid://ckcjrr7wrj4hw" path="res://assets/scenes/demos/inventory/example_item.tscn" id="11_j74lt"]
 [ext_resource type="Script" path="res://scripts/scene/item_cutscene.gd" id="12_tx70s"]
-
-[sub_resource type="Animation" id="Animation_t28re"]
-resource_name = "enemy chase test"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Corrupted Beast:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-298, 515)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Corrupted Beast:speed")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [300]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("player:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(720, 515)]
-}
 
 [sub_resource type="Animation" id="Animation_wvpcs"]
 resource_name = "fade_to_black"
@@ -116,7 +77,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epvd2"]
 _data = {
-"enemy chase checkpoint": SubResource("Animation_t28re"),
+"enemy chase checkpoint": ExtResource("2_4cn25"),
 "fade_to_black": SubResource("Animation_wvpcs"),
 "fade_to_normal": SubResource("Animation_mslam"),
 "intro": ExtResource("2_tyr7s"),
@@ -146,7 +107,6 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_epvd2")
 }
-autoplay = "intro"
 script = ExtResource("4_ctrmx")
 
 [node name="Corrupted Beast" parent="." instance=ExtResource("2_b1q20")]

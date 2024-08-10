@@ -22,7 +22,7 @@ signal staminaValue(value) # connects to StaminaBar HUD
 signal playerStaminaIncreased() # connects to Inventory HUD
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var _animation_player = $AnimatedSprite2D
-@onready var _audio_player = $AudioStreamPlayer
+@onready var _audio_player = $"player audio"
 
 # Game variables
 @onready var animationPlayer = get_node("../AnimationPlayer")

@@ -12,5 +12,8 @@ func _on_body_entered(body):
 	if body.name == "player":
 		print("end game")
 		var playerHealth = get_node("../Player Hud/HealthBar")
-		playerHealth.value = 0
+		# playerHealth.value = 0
 		endGame.emit()
+
+func _on_exit_prologue_trigger_area_body_entered(body):
+	hide()

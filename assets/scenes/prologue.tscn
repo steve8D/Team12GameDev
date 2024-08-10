@@ -1,16 +1,15 @@
-[gd_scene load_steps=25 format=3 uid="uid://dk10laqm4ouhs"]
+[gd_scene load_steps=26 format=3 uid="uid://dk10laqm4ouhs"]
 
 [ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/scenes/gameplay/prologue_background.tscn" id="1_0mlr8"]
-[ext_resource type="Animation" uid="uid://deldgp207ppad" path="res://assets/animationPlayer/enemy chase checkpoint.res" id="2_4cn25"]
+[ext_resource type="Animation" path="res://assets/animationPlayer/enemy chase checkpoint.res" id="2_4cn25"]
 [ext_resource type="PackedScene" uid="uid://dfsrcdaj78ouw" path="res://assets/scenes/sprites/corrupted_beast.tscn" id="2_b1q20"]
 [ext_resource type="Animation" uid="uid://cwg4nw0h1silo" path="res://assets/animationPlayer/prologue.res" id="2_tyr7s"]
 [ext_resource type="Animation" uid="uid://b5nfl5r406kg2" path="res://assets/animationPlayer/lumenberry collected.res" id="3_ky37k"]
 [ext_resource type="Script" path="res://scripts/gameplay/player_movement.gd" id="3_mms78"]
 [ext_resource type="SpriteFrames" uid="uid://mscqk7s1lcso" path="res://assets/sprites/player/farren.tres" id="4_6rubt"]
-[ext_resource type="Script" path="res://scripts/gameplay/AnimationPlayer.gd" id="4_ctrmx"]
 [ext_resource type="Script" path="res://scripts/scene/TooltipLabel.gd" id="5_0jfxi"]
+[ext_resource type="Script" path="res://scripts/scene/AnimationPlayer.gd" id="5_1uvq2"]
 [ext_resource type="PackedScene" uid="uid://civnl8y32q1la" path="res://assets/scenes/gameplay/dialogue-box.tscn" id="5_hu444"]
-[ext_resource type="AudioStream" uid="uid://bkvwaap51oq30" path="res://audio/Footsteps_1.mp3" id="8_r57cp"]
 [ext_resource type="Script" path="res://scripts/gameplay/StaminaBar.gd" id="9_dennq"]
 [ext_resource type="Texture2D" uid="uid://dga3hkjm4m17y" path="res://assets/ui/base/v1_stamina_bar.png" id="9_jxspn"]
 [ext_resource type="Texture2D" uid="uid://c0vc5iyo2ac8b" path="res://assets/ui/base/v1_health_bar.png" id="9_yg5a2"]
@@ -19,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bwedt3m1hxoxo" path="res://assets/ui/base/v1_health_bar_fill.png" id="10_qiub6"]
 [ext_resource type="PackedScene" uid="uid://ckcjrr7wrj4hw" path="res://assets/scenes/demos/inventory/example_item.tscn" id="11_j74lt"]
 [ext_resource type="Script" path="res://scripts/scene/item_cutscene.gd" id="12_tx70s"]
+[ext_resource type="AudioStream" uid="uid://ugsvjppowt6i" path="res://audio/Creepy_Forest_Sounds_Full.mp3" id="20_u3qtx"]
 
 [sub_resource type="Animation" id="Animation_wvpcs"]
 resource_name = "fade_to_black"
@@ -26,7 +26,7 @@ length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Transition:visible")
+tracks/0/path = NodePath("CanvasLayer/Transition:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -38,7 +38,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Transition:color")
+tracks/1/path = NodePath("CanvasLayer/Transition:color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -47,13 +47,25 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player/player audio:stream")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
 
 [sub_resource type="Animation" id="Animation_mslam"]
 resource_name = "fade_to_normal"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Transition:color")
+tracks/0/path = NodePath("CanvasLayer/Transition:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -65,7 +77,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Transition:visible")
+tracks/1/path = NodePath("CanvasLayer/Transition:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -90,24 +102,36 @@ size = Vector2(4.59339, 0.855126)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_31fx1"]
 size = Vector2(150.75, 143)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmice"]
+size = Vector2(112, 100)
+
 [node name="Game" type="Node2D"]
 position = Vector2(444, -2)
 
-[node name="Transition" type="ColorRect" parent="."]
-visible = false
-z_index = 1
-offset_left = -443.0
-offset_right = 2997.0
-offset_bottom = 666.0
-color = Color(0, 0, 0, 1)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Transition" type="ColorRect" parent="CanvasLayer"]
+z_index = 2
+offset_left = 1.0
+offset_top = -2.0
+offset_right = 3441.0
+offset_bottom = 664.0
+color = Color(0, 0, 0, 0)
 
 [node name="Background" parent="." instance=ExtResource("1_0mlr8")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "intro"
 libraries = {
 "": SubResource("AnimationLibrary_epvd2")
 }
-script = ExtResource("4_ctrmx")
+script = ExtResource("5_1uvq2")
+
+[node name="background audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_u3qtx")
+volume_db = -15.0
+autoplay = true
 
 [node name="Corrupted Beast" parent="." instance=ExtResource("2_b1q20")]
 speed = 300
@@ -126,7 +150,6 @@ shape = SubResource("RectangleShape2D_vwcwx")
 
 [node name="Camera2D" type="Camera2D" parent="player"]
 position = Vector2(-22.1116, -59.9431)
-offset = Vector2(-8.66374e-38, 0)
 limit_left = 0
 limit_right = 3430
 limit_bottom = 650
@@ -136,39 +159,13 @@ editor_draw_limits = true
 scale = Vector2(2.50136, 2.50136)
 sprite_frames = ExtResource("4_6rubt")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="player"]
-stream = ExtResource("8_r57cp")
-volume_db = 6.783
-
-[node name="ToolTip1" type="Label" parent="."]
-visible = false
-offset_left = -400.0
-offset_top = 485.0
-offset_right = -239.0
-offset_bottom = 511.0
-text = "Press A or D to move"
-script = ExtResource("5_0jfxi")
-
-[node name="ToolTip2 Collider Area" type="Area2D" parent="."]
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ToolTip2 Collider Area"]
-position = Vector2(16, 500)
-shape = SubResource("RectangleShape2D_31fx1")
-debug_color = Color(0.6, 0.388235, 0.960784, 0.419608)
-
-[node name="Tooltip2" type="Label" parent="ToolTip2 Collider Area"]
-visible = false
-offset_left = -68.0
-offset_top = 547.0
-offset_right = 187.0
-offset_bottom = 573.0
-text = "Press W or S to move up or down"
-script = ExtResource("5_0jfxi")
+[node name="player audio" type="AudioStreamPlayer" parent="player"]
 
 [node name="Dialogue UI" parent="." instance=ExtResource("5_hu444")]
+visible = false
 
 [node name="Player Hud" type="CanvasLayer" parent="."]
+layer = 0
 visible = false
 
 [node name="HealthBar" type="TextureProgressBar" parent="Player Hud"]
@@ -212,21 +209,72 @@ offset_left = -1162.0
 offset_top = 7.0
 offset_right = -1162.0
 
+[node name="ToolTip1" type="Label" parent="."]
+visible = false
+offset_left = -400.0
+offset_top = 485.0
+offset_right = -239.0
+offset_bottom = 511.0
+text = "Press A or D to move"
+script = ExtResource("5_0jfxi")
+
+[node name="ToolTip2 Collider Area" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToolTip2 Collider Area"]
+position = Vector2(16, 500)
+shape = SubResource("RectangleShape2D_31fx1")
+debug_color = Color(0.6, 0.388235, 0.960784, 0.419608)
+
+[node name="Tooltip2" type="Label" parent="ToolTip2 Collider Area"]
+visible = false
+offset_left = -75.0
+offset_top = 468.0
+offset_right = 180.0
+offset_bottom = 494.0
+text = "Press W or S to move up or down"
+script = ExtResource("5_0jfxi")
+
+[node name="ToolTip3 Collider Area" type="Area2D" parent="."]
+position = Vector2(580, 0)
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToolTip3 Collider Area"]
+visible = false
+position = Vector2(16, 500)
+shape = SubResource("RectangleShape2D_31fx1")
+debug_color = Color(0.6, 0.388235, 0.960784, 0.419608)
+
+[node name="Tooltip3" type="Label" parent="ToolTip3 Collider Area"]
+visible = false
+offset_left = -68.0
+offset_top = 468.0
+offset_right = 305.0
+offset_bottom = 494.0
+text = "Pick up the stamina potion to refill your stamina"
+script = ExtResource("5_0jfxi")
+
 [node name="Item" parent="." instance=ExtResource("11_j74lt")]
 position = Vector2(689, 536)
 script = ExtResource("12_tx70s")
 animationToPlay = "lumenberry collected"
 itemName = "Mana Potion"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
-autoplay = true
+[node name="Exit prologue Trigger Area" type="Area2D" parent="."]
+position = Vector2(2874, 485)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit prologue Trigger Area"]
+position = Vector2(10, 40)
+shape = SubResource("RectangleShape2D_mmice")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
 [connection signal="endGame" from="Corrupted Beast" to="AnimationPlayer" method="_on_corrupted_beast_end_game"]
 [connection signal="playerStaminaIncreased" from="player" to="Player Hud/Inventory HUD" method="_on_player_player_stamina_increased"]
 [connection signal="staminaValue" from="player" to="Player Hud/StaminaBar" method="updateStaminaUI"]
-[connection signal="body_entered" from="ToolTip2 Collider Area" to="ToolTip2 Collider Area/Tooltip2" method="_on_area_2d_body_entered"]
 [connection signal="itemConsumed" from="Player Hud/Inventory HUD" to="player" method="_on_inventory_hud_item_consumed"]
 [connection signal="itemPickedUp" from="Player Hud/Inventory HUD" to="Item" method="_on_inventory_hud_item_picked_up"]
+[connection signal="body_entered" from="ToolTip2 Collider Area" to="ToolTip2 Collider Area/Tooltip2" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="ToolTip3 Collider Area" to="ToolTip3 Collider Area/Tooltip3" method="_on_area_2d_body_entered"]
 [connection signal="itemPickedUp" from="Item" to="Player Hud/Inventory HUD" method="_on_item_item_picked_up"]
+[connection signal="body_entered" from="Exit prologue Trigger Area" to="AnimationPlayer" method="_on_exit_prologue_trigger_area_body_entered"]
+[connection signal="body_entered" from="Exit prologue Trigger Area" to="Corrupted Beast" method="_on_exit_prologue_trigger_area_body_entered"]

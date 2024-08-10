@@ -5,10 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://civnl8y32q1la" path="res://assets/scenes/gameplay/dialogue-box.tscn" id="2_xin4l"]
 [ext_resource type="Script" path="res://scripts/gameplay/player_movement.gd" id="3_u5drh"]
 [ext_resource type="SpriteFrames" uid="uid://mscqk7s1lcso" path="res://assets/sprites/player/farren.tres" id="4_2kxxm"]
-[ext_resource type="Animation" uid="uid://cwg4nw0h1silo" path="res://assets/animationPlayer/prologue.res" id="5_c5v6g"]
 [ext_resource type="Animation" uid="uid://b5nfl5r406kg2" path="res://assets/animationPlayer/lumenberry collected.res" id="6_wchci"]
-[ext_resource type="Script" path="res://scripts/gameplay/AnimationPlayer.gd" id="7_pn44t"]
-[ext_resource type="Animation" uid="uid://cadc1sf0g4ukb" path="res://assets/animationPlayer/prologue end.res" id="8_vn211"]
+[ext_resource type="Script" path="res://scripts/scene/AnimationPlayer.gd" id="7_pn44t"]
+[ext_resource type="Animation" uid="uid://cwg4nw0h1silo" path="res://assets/animationPlayer/prologue.res" id="8_vn211"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pcfoc"]
 size = Vector2(4.59339, 0.855126)
@@ -108,14 +107,64 @@ tracks/1/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_vv30d"]
+resource_name = "prologue_end"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Dialogue:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.7, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Dialogue")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["Oh you're back safe"],
+"method": &"setText"
+}, {
+"args": ["Yes I am!"],
+"method": &"setText"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Dialogue")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 1.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": ["res://assets/ui/portrait/ma portrait.png"],
+"method": &"setCharacterPhoto"
+}, {
+"args": ["res://assets/ui/portrait/farren portrait.png"],
+"method": &"setCharacterPhoto"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epvd2"]
 _data = {
 "enemy chase test": SubResource("Animation_t28re"),
 "fade_to_black": SubResource("Animation_wvpcs"),
 "fade_to_normal": SubResource("Animation_mslam"),
-"intro": ExtResource("5_c5v6g"),
+"intro": ExtResource("8_vn211"),
 "lumenberry collected": ExtResource("6_wchci"),
-"prologue end": ExtResource("8_vn211")
+"prologue_end": SubResource("Animation_vv30d")
 }
 
 [node name="village" type="Node2D"]
@@ -123,7 +172,6 @@ _data = {
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_fju3k")]
 
 [node name="Dialogue" parent="." instance=ExtResource("2_xin4l")]
-visible = false
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_aybuu")]
 position = Vector2(822, 494)
@@ -151,9 +199,11 @@ editor_draw_limits = true
 scale = Vector2(2.50136, 2.50136)
 sprite_frames = ExtResource("4_2kxxm")
 
+[node name="player audio" type="AudioStreamPlayer" parent="player"]
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../player")
-autoplay = "prologue end"
+autoplay = "prologue_end"
 libraries = {
 "": SubResource("AnimationLibrary_epvd2")
 }

@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @onready var dialogueText = $"Control/Textbox/MarginContainer/Dialogue Text"
-@onready var characterPhoto = $"Control/CharacterPhoto"
+@onready var characterPhoto = $"Control/TextureRect"
 var dialogueSkipAllowed = false
 
 func _ready():
@@ -16,7 +16,11 @@ func setDialogueSkipAllowed(bool):
 
 func setText(text):
 	dialogueText.text = text
+
+func setCharacterPhoto(photoPath):
+	characterPhoto.texture = load(photoPath)
 	
+
 func _on_player_trigger_dialogue():
 	show()
 

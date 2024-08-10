@@ -134,7 +134,7 @@ volume_db = -15.0
 autoplay = true
 
 [node name="Corrupted Beast" parent="." instance=ExtResource("2_b1q20")]
-speed = 300
+position = Vector2(-1000, 515)
 
 [node name="player" type="CharacterBody2D" parent="."]
 position = Vector2(-757, 551)

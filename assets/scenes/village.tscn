@@ -172,6 +172,7 @@ _data = {
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_fju3k")]
 
 [node name="Dialogue" parent="." instance=ExtResource("2_xin4l")]
+visible = false
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_aybuu")]
 position = Vector2(822, 494)
@@ -198,6 +199,7 @@ editor_draw_limits = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player"]
 scale = Vector2(2.50136, 2.50136)
 sprite_frames = ExtResource("4_2kxxm")
+flip_h = true
 
 [node name="player audio" type="AudioStreamPlayer" parent="player"]
 

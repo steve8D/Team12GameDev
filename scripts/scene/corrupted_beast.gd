@@ -17,3 +17,5 @@ func _on_body_entered(body):
 
 func _on_exit_prologue_trigger_area_body_entered(body):
 	hide()
+	$"Area2D".monitoring = false
+	$"Area2D".monitorable = false

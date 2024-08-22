@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cynx08l0hbou4"]
+[gd_scene load_steps=7 format=3 uid="uid://cynx08l0hbou4"]
 
 [ext_resource type="Texture2D" uid="uid://cmm1cs14iyyve" path="res://assets/world/earth/village.png" id="1_d50pl"]
+[ext_resource type="Texture2D" uid="uid://bo8b614gqxsxf" path="res://assets/world/village/3.png" id="2_h08md"]
+[ext_resource type="Texture2D" uid="uid://cgsiqborcvj2" path="res://assets/world/village/2.png" id="3_sckqh"]
+[ext_resource type="Texture2D" uid="uid://dq577pqnb1jqc" path="res://assets/world/village/7.png" id="4_uxn4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8acpi"]
 size = Vector2(70, 724)
@@ -13,6 +16,7 @@ size = Vector2(2783, 108)
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+z_index = -2
 position = Vector2(1277, 322)
 scale = Vector2(2.39779, 2.39779)
 texture = ExtResource("1_d50pl")
@@ -30,3 +34,20 @@ shape = SubResource("RectangleShape2D_8acpi")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(1264, 602)
 shape = SubResource("RectangleShape2D_20swh")
+
+[node name="Housing" type="Sprite2D" parent="."]
+position = Vector2(908, 449)
+scale = Vector2(3, 3)
+texture = ExtResource("2_h08md")
+
+[node name="2" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(1158, 287)
+scale = Vector2(3, 3)
+texture = ExtResource("3_sckqh")
+
+[node name="7" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(630, 407)
+scale = Vector2(3, 3)
+texture = ExtResource("4_uxn4g")

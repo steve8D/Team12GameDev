@@ -1,7 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://dk10laqm4ouhs"]
+[gd_scene load_steps=29 format=3 uid="uid://dk10laqm4ouhs"]
 
 [ext_resource type="PackedScene" uid="uid://ch7xo0dpl8e8x" path="res://assets/scenes/gameplay/prologue_background.tscn" id="1_0mlr8"]
-[ext_resource type="Animation" path="res://assets/animationPlayer/enemy chase checkpoint.res" id="2_4cn25"]
+[ext_resource type="Animation" uid="uid://xw2lci5dwaol" path="res://assets/animationPlayer/enemy chase checkpoint.res" id="2_4cn25"]
 [ext_resource type="PackedScene" uid="uid://dfsrcdaj78ouw" path="res://assets/scenes/sprites/corrupted_beast.tscn" id="2_b1q20"]
 [ext_resource type="Animation" uid="uid://cwg4nw0h1silo" path="res://assets/animationPlayer/prologue.res" id="2_tyr7s"]
 [ext_resource type="Animation" uid="uid://b5nfl5r406kg2" path="res://assets/animationPlayer/lumenberry collected.res" id="3_ky37k"]
@@ -10,11 +10,14 @@
 [ext_resource type="Script" path="res://scripts/scene/TooltipLabel.gd" id="5_0jfxi"]
 [ext_resource type="Script" path="res://scripts/scene/AnimationPlayer.gd" id="5_1uvq2"]
 [ext_resource type="PackedScene" uid="uid://civnl8y32q1la" path="res://assets/scenes/gameplay/dialogue-box.tscn" id="5_hu444"]
+[ext_resource type="AudioStream" uid="uid://duejcewfu1enm" path="res://audio/Forest_tree_branch_leaf_foliage_impact_short_012.wav" id="7_glc6a"]
 [ext_resource type="Script" path="res://scripts/gameplay/StaminaBar.gd" id="9_dennq"]
 [ext_resource type="Texture2D" uid="uid://dga3hkjm4m17y" path="res://assets/ui/base/v1_stamina_bar.png" id="9_jxspn"]
 [ext_resource type="Texture2D" uid="uid://c0vc5iyo2ac8b" path="res://assets/ui/base/v1_health_bar.png" id="9_yg5a2"]
+[ext_resource type="Script" path="res://assets/scenes/Camera2D.gd" id="10_73asa"]
 [ext_resource type="Texture2D" uid="uid://bm4k27fkjav1o" path="res://assets/ui/base/v1_stamina_bar_fill.png" id="10_n1dgu"]
 [ext_resource type="PackedScene" uid="uid://bhe8p5ocxdjso" path="res://assets/scenes/gameplay/inventory.tscn" id="10_ogjhq"]
+[ext_resource type="AudioStream" uid="uid://bkvwaap51oq30" path="res://audio/Footsteps_1.mp3" id="10_okdwy"]
 [ext_resource type="Texture2D" uid="uid://bwedt3m1hxoxo" path="res://assets/ui/base/v1_health_bar_fill.png" id="10_qiub6"]
 [ext_resource type="PackedScene" uid="uid://ckcjrr7wrj4hw" path="res://assets/scenes/demos/inventory/example_item.tscn" id="11_j74lt"]
 [ext_resource type="Script" path="res://scripts/scene/item_cutscene.gd" id="12_tx70s"]
@@ -133,11 +136,16 @@ stream = ExtResource("20_u3qtx")
 volume_db = -15.0
 autoplay = true
 
+[node name="sfx audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_glc6a")
+volume_db = -13.77
+autoplay = true
+
 [node name="Corrupted Beast" parent="." instance=ExtResource("2_b1q20")]
-position = Vector2(-1000, 515)
+speed = 300
 
 [node name="player" type="CharacterBody2D" parent="."]
-position = Vector2(-757, 551)
+position = Vector2(720, 515)
 scale = Vector2(0.994953, 0.950902)
 collision_layer = 3
 collision_mask = 3
@@ -154,12 +162,16 @@ limit_left = 0
 limit_right = 3430
 limit_bottom = 650
 editor_draw_limits = true
+script = ExtResource("10_73asa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player"]
 scale = Vector2(2.50136, 2.50136)
 sprite_frames = ExtResource("4_6rubt")
+flip_h = true
 
 [node name="player audio" type="AudioStreamPlayer" parent="player"]
+stream = ExtResource("10_okdwy")
+volume_db = 1.712
 
 [node name="Dialogue UI" parent="." instance=ExtResource("5_hu444")]
 visible = false
@@ -193,7 +205,6 @@ texture_progress_offset = Vector2(11, 11)
 script = ExtResource("9_dennq")
 
 [node name="Quest" type="Label" parent="Player Hud"]
-visible = false
 offset_left = 694.0
 offset_top = 17.0
 offset_right = 976.0
@@ -248,10 +259,12 @@ debug_color = Color(0.6, 0.388235, 0.960784, 0.419608)
 [node name="Tooltip3" type="Label" parent="ToolTip3 Collider Area"]
 visible = false
 offset_left = -68.0
-offset_top = 468.0
+offset_top = 389.0
 offset_right = 305.0
-offset_bottom = 494.0
-text = "Pick up the stamina potion to refill your stamina"
+offset_bottom = 467.0
+text = "Hold down Shift to sprint. 
+Sprint uses your stamina
+Pick up the stamina potion to refill your stamina"
 script = ExtResource("5_0jfxi")
 
 [node name="Item" parent="." instance=ExtResource("11_j74lt")]

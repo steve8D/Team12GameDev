@@ -1,6 +1,8 @@
 extends AnimationPlayer
 
 var playNextScene = false
+@onready var audio: AudioStreamPlayer = $"background audio"
+@onready var deathAudioSting = load("res://audio/Your_Light_Fades_Away.mp3")
 
 func _on_corrupted_beast_end_game():
 	play("fade_to_black")
@@ -17,5 +19,6 @@ func _on_animation_finished(anim_name):
 func _on_exit_prologue_trigger_area_body_entered(body):
 	if (body.name == "player"):
 		playNextScene = true
+		audio.stream = deathAudioSting
 		play("fade_to_black")
 

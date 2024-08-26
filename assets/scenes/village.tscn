@@ -109,7 +109,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_vv30d"]
 resource_name = "prologue_end"
-length = 5.0
+length = 30.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -117,7 +117,7 @@ tracks/0/path = NodePath("../Dialogue:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.3, 0.7, 1.4),
+"times": PackedFloat32Array(0.3, 5, 8.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -129,13 +129,16 @@ tracks/1/path = NodePath("../Dialogue")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 1.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.1, 7.8, 14),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": ["Oh you're back safe"],
 "method": &"setText"
 }, {
 "args": ["Yes I am!"],
+"method": &"setText"
+}, {
+"args": ["Where have you been? I warned you to avoid the forest, you could lose your live!"],
 "method": &"setText"
 }]
 }
@@ -146,13 +149,16 @@ tracks/2/path = NodePath("../Dialogue")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 1.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.1, 8.1, 14.1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": ["res://assets/ui/portrait/ma portrait.png"],
 "method": &"setCharacterPhoto"
 }, {
 "args": ["res://assets/ui/portrait/farren portrait.png"],
+"method": &"setCharacterPhoto"
+}, {
+"args": ["res://assets/ui/portrait/ma portrait.png"],
 "method": &"setCharacterPhoto"
 }]
 }
@@ -205,10 +211,10 @@ flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../player")
-autoplay = "prologue_end"
 libraries = {
 "": SubResource("AnimationLibrary_epvd2")
 }
+autoplay = "prologue_end"
 script = ExtResource("7_pn44t")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]

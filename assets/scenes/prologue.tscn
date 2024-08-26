@@ -125,10 +125,10 @@ color = Color(0, 0, 0, 0)
 [node name="Background" parent="." instance=ExtResource("1_0mlr8")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "intro"
 libraries = {
 "": SubResource("AnimationLibrary_epvd2")
 }
+autoplay = "intro"
 script = ExtResource("5_1uvq2")
 
 [node name="background audio" type="AudioStreamPlayer" parent="."]
